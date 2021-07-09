@@ -10,9 +10,8 @@
 
 class Server {
 public:
-
     static void train();
-    static void evaluate();
+    static void evaluate(int iter);
 
 private:
     static void update(int u, int i, int r, VectorXd& grad_u, VectorXd& grad_v);

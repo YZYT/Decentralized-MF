@@ -1,4 +1,4 @@
-CMakeFiles/RS.dir/main.cpp.o: /root/research/RS/main.cpp \
+CMakeFiles/RS.dir/base.cpp.o: /root/research/RS/base.cpp \
  /usr/include/stdc-predef.h /root/research/RS/base.h \
  /opt/gcc/include/c++/10.3.0/iostream \
  /opt/gcc/include/c++/10.3.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -452,5 +452,4 @@ CMakeFiles/RS.dir/main.cpp.o: /root/research/RS/main.cpp \
  /opt/gcc/include/c++/10.3.0/bits/quoted_string.h \
  /opt/gcc/include/c++/10.3.0/codecvt \
  /opt/gcc/include/c++/10.3.0/bits/fs_dir.h \
- /opt/gcc/include/c++/10.3.0/bits/fs_ops.h /root/research/RS/Data.h \
- /root/research/RS/Client.h /root/research/RS/Server.h
+ /opt/gcc/include/c++/10.3.0/bits/fs_ops.h

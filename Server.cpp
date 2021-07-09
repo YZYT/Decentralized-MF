@@ -2,7 +2,7 @@
 
 void Server::train() {
     random_shuffle(records.begin(), records.end());
-    f(iter, 1, 200){
+    f(iter, 1, T){
         for(auto record: records){
             int u = record.u;
             int i = record.i;
@@ -12,8 +12,7 @@ void Server::train() {
         }
         eta = eta * 0.95;
         if(iter % 20 == 0){
-            DEBUG(iter)
-            evaluate();
+            evaluate(iter);
         }
     }
 }
@@ -30,7 +29,7 @@ void Server::update(int u, int i, int r, VectorXd& grad_u, VectorXd& grad_v) {
 
 }
 
-void Server::evaluate() {
+void Server::evaluate(int iter) {
     double MSE = 0, MAE = 0;
     for(auto record: records_test){
         int u = record.u;
@@ -42,8 +41,10 @@ void Server::evaluate() {
     }
     MSE = sqrt(MSE / records_test.size());
     MAE = MAE / records_test.size();
-    DEBUG(MSE)
-    DEBUG(MAE)
+    PRINT(os, iter)
+    PRINT(os, MSE)
+    PRINT(os, MAE)
+    CSV(os_csv, iter, MSE, MAE)
 }
 
 double Server::predict(int u, int i){

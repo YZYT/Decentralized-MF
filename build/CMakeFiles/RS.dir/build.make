@@ -53,10 +53,10 @@ RM = /opt/cmake-3.21/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/RS
+CMAKE_SOURCE_DIR = /root/research/RS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/RS/build
+CMAKE_BINARY_DIR = /root/research/RS/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/RS.dir/depend.make
@@ -72,72 +72,72 @@ include CMakeFiles/RS.dir/flags.make
 CMakeFiles/RS.dir/main.cpp.o: CMakeFiles/RS.dir/flags.make
 CMakeFiles/RS.dir/main.cpp.o: ../main.cpp
 CMakeFiles/RS.dir/main.cpp.o: CMakeFiles/RS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RS.dir/main.cpp.o"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/main.cpp.o -MF CMakeFiles/RS.dir/main.cpp.o.d -o CMakeFiles/RS.dir/main.cpp.o -c /root/RS/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/research/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RS.dir/main.cpp.o"
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/main.cpp.o -MF CMakeFiles/RS.dir/main.cpp.o.d -o CMakeFiles/RS.dir/main.cpp.o -c /root/research/RS/main.cpp
 
 CMakeFiles/RS.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RS.dir/main.cpp.i"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/RS/main.cpp > CMakeFiles/RS.dir/main.cpp.i
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/research/RS/main.cpp > CMakeFiles/RS.dir/main.cpp.i
 
 CMakeFiles/RS.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RS.dir/main.cpp.s"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/RS/main.cpp -o CMakeFiles/RS.dir/main.cpp.s
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/research/RS/main.cpp -o CMakeFiles/RS.dir/main.cpp.s
 
 CMakeFiles/RS.dir/Data.cpp.o: CMakeFiles/RS.dir/flags.make
 CMakeFiles/RS.dir/Data.cpp.o: ../Data.cpp
 CMakeFiles/RS.dir/Data.cpp.o: CMakeFiles/RS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RS.dir/Data.cpp.o"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/Data.cpp.o -MF CMakeFiles/RS.dir/Data.cpp.o.d -o CMakeFiles/RS.dir/Data.cpp.o -c /root/RS/Data.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/research/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RS.dir/Data.cpp.o"
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/Data.cpp.o -MF CMakeFiles/RS.dir/Data.cpp.o.d -o CMakeFiles/RS.dir/Data.cpp.o -c /root/research/RS/Data.cpp
 
 CMakeFiles/RS.dir/Data.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RS.dir/Data.cpp.i"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/RS/Data.cpp > CMakeFiles/RS.dir/Data.cpp.i
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/research/RS/Data.cpp > CMakeFiles/RS.dir/Data.cpp.i
 
 CMakeFiles/RS.dir/Data.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RS.dir/Data.cpp.s"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/RS/Data.cpp -o CMakeFiles/RS.dir/Data.cpp.s
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/research/RS/Data.cpp -o CMakeFiles/RS.dir/Data.cpp.s
 
 CMakeFiles/RS.dir/Client.cpp.o: CMakeFiles/RS.dir/flags.make
 CMakeFiles/RS.dir/Client.cpp.o: ../Client.cpp
 CMakeFiles/RS.dir/Client.cpp.o: CMakeFiles/RS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RS.dir/Client.cpp.o"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/Client.cpp.o -MF CMakeFiles/RS.dir/Client.cpp.o.d -o CMakeFiles/RS.dir/Client.cpp.o -c /root/RS/Client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/research/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RS.dir/Client.cpp.o"
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/Client.cpp.o -MF CMakeFiles/RS.dir/Client.cpp.o.d -o CMakeFiles/RS.dir/Client.cpp.o -c /root/research/RS/Client.cpp
 
 CMakeFiles/RS.dir/Client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RS.dir/Client.cpp.i"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/RS/Client.cpp > CMakeFiles/RS.dir/Client.cpp.i
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/research/RS/Client.cpp > CMakeFiles/RS.dir/Client.cpp.i
 
 CMakeFiles/RS.dir/Client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RS.dir/Client.cpp.s"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/RS/Client.cpp -o CMakeFiles/RS.dir/Client.cpp.s
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/research/RS/Client.cpp -o CMakeFiles/RS.dir/Client.cpp.s
 
 CMakeFiles/RS.dir/Server.cpp.o: CMakeFiles/RS.dir/flags.make
 CMakeFiles/RS.dir/Server.cpp.o: ../Server.cpp
 CMakeFiles/RS.dir/Server.cpp.o: CMakeFiles/RS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RS.dir/Server.cpp.o"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/Server.cpp.o -MF CMakeFiles/RS.dir/Server.cpp.o.d -o CMakeFiles/RS.dir/Server.cpp.o -c /root/RS/Server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/research/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RS.dir/Server.cpp.o"
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/Server.cpp.o -MF CMakeFiles/RS.dir/Server.cpp.o.d -o CMakeFiles/RS.dir/Server.cpp.o -c /root/research/RS/Server.cpp
 
 CMakeFiles/RS.dir/Server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RS.dir/Server.cpp.i"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/RS/Server.cpp > CMakeFiles/RS.dir/Server.cpp.i
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/research/RS/Server.cpp > CMakeFiles/RS.dir/Server.cpp.i
 
 CMakeFiles/RS.dir/Server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RS.dir/Server.cpp.s"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/RS/Server.cpp -o CMakeFiles/RS.dir/Server.cpp.s
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/research/RS/Server.cpp -o CMakeFiles/RS.dir/Server.cpp.s
 
-CMakeFiles/RS.dir/basic.cpp.o: CMakeFiles/RS.dir/flags.make
-CMakeFiles/RS.dir/basic.cpp.o: ../basic.cpp
-CMakeFiles/RS.dir/basic.cpp.o: CMakeFiles/RS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RS.dir/basic.cpp.o"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/basic.cpp.o -MF CMakeFiles/RS.dir/basic.cpp.o.d -o CMakeFiles/RS.dir/basic.cpp.o -c /root/RS/basic.cpp
+CMakeFiles/RS.dir/base.cpp.o: CMakeFiles/RS.dir/flags.make
+CMakeFiles/RS.dir/base.cpp.o: ../base.cpp
+CMakeFiles/RS.dir/base.cpp.o: CMakeFiles/RS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/research/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RS.dir/base.cpp.o"
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RS.dir/base.cpp.o -MF CMakeFiles/RS.dir/base.cpp.o.d -o CMakeFiles/RS.dir/base.cpp.o -c /root/research/RS/base.cpp
 
-CMakeFiles/RS.dir/basic.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RS.dir/basic.cpp.i"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/RS/basic.cpp > CMakeFiles/RS.dir/basic.cpp.i
+CMakeFiles/RS.dir/base.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RS.dir/base.cpp.i"
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/research/RS/base.cpp > CMakeFiles/RS.dir/base.cpp.i
 
-CMakeFiles/RS.dir/basic.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RS.dir/basic.cpp.s"
-	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/RS/basic.cpp -o CMakeFiles/RS.dir/basic.cpp.s
+CMakeFiles/RS.dir/base.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RS.dir/base.cpp.s"
+	/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/research/RS/base.cpp -o CMakeFiles/RS.dir/base.cpp.s
 
 # Object files for target RS
 RS_OBJECTS = \
@@ -145,7 +145,7 @@ RS_OBJECTS = \
 "CMakeFiles/RS.dir/Data.cpp.o" \
 "CMakeFiles/RS.dir/Client.cpp.o" \
 "CMakeFiles/RS.dir/Server.cpp.o" \
-"CMakeFiles/RS.dir/basic.cpp.o"
+"CMakeFiles/RS.dir/base.cpp.o"
 
 # External object files for target RS
 RS_EXTERNAL_OBJECTS =
@@ -154,10 +154,10 @@ RS: CMakeFiles/RS.dir/main.cpp.o
 RS: CMakeFiles/RS.dir/Data.cpp.o
 RS: CMakeFiles/RS.dir/Client.cpp.o
 RS: CMakeFiles/RS.dir/Server.cpp.o
-RS: CMakeFiles/RS.dir/basic.cpp.o
+RS: CMakeFiles/RS.dir/base.cpp.o
 RS: CMakeFiles/RS.dir/build.make
 RS: CMakeFiles/RS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable RS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/research/RS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable RS"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RS.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -169,6 +169,6 @@ CMakeFiles/RS.dir/clean:
 .PHONY : CMakeFiles/RS.dir/clean
 
 CMakeFiles/RS.dir/depend:
-	cd /root/RS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/RS /root/RS /root/RS/build /root/RS/build /root/RS/build/CMakeFiles/RS.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/research/RS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/research/RS /root/research/RS /root/research/RS/build /root/research/RS/build /root/research/RS/build/CMakeFiles/RS.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RS.dir/depend
 

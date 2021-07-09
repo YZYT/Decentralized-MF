@@ -34,18 +34,6 @@
 			"value" : "/usr/bin/ar"
 		},
 		{
-			"name" : "CMAKE_BACKWARDS_COMPATIBILITY",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "For backwards compatibility, what version of CMake commands and syntax should this version of CMake try to support."
-				}
-			],
-			"type" : "STRING",
-			"value" : "2.4"
-		},
-		{
 			"name" : "CMAKE_BUILD_TYPE",
 			"properties" : 
 			[
@@ -67,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/root/RS/build"
+			"value" : "/root/research/RS/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -167,10 +155,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
-			"type" : "FILEPATH",
+			"type" : "STRING",
 			"value" : "/bin/g++-10"
 		},
 		{
@@ -215,7 +203,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during all build types."
+					"value" : "Flags used by the CXX compiler during all build types."
 				}
 			],
 			"type" : "STRING",
@@ -231,7 +219,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during debug builds."
+					"value" : "Flags used by the CXX compiler during DEBUG builds."
 				}
 			],
 			"type" : "STRING",
@@ -247,7 +235,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during release builds for minimum size."
+					"value" : "Flags used by the CXX compiler during MINSIZEREL builds."
 				}
 			],
 			"type" : "STRING",
@@ -263,7 +251,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during release builds."
+					"value" : "Flags used by the CXX compiler during RELEASE builds."
 				}
 			],
 			"type" : "STRING",
@@ -279,7 +267,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during release builds with debug info."
+					"value" : "Flags used by the CXX compiler during RELWITHDEBINFO builds."
 				}
 			],
 			"type" : "STRING",
@@ -295,10 +283,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "C compiler"
 				}
 			],
-			"type" : "FILEPATH",
+			"type" : "STRING",
 			"value" : "/bin/gcc-10"
 		},
 		{
@@ -343,7 +331,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during all build types."
+					"value" : "Flags used by the C compiler during all build types."
 				}
 			],
 			"type" : "STRING",
@@ -359,7 +347,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during debug builds."
+					"value" : "Flags used by the C compiler during DEBUG builds."
 				}
 			],
 			"type" : "STRING",
@@ -375,7 +363,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during release builds for minimum size."
+					"value" : "Flags used by the C compiler during MINSIZEREL builds."
 				}
 			],
 			"type" : "STRING",
@@ -391,7 +379,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during release builds."
+					"value" : "Flags used by the C compiler during RELEASE builds."
 				}
 			],
 			"type" : "STRING",
@@ -407,7 +395,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the compiler during release builds with debug info."
+					"value" : "Flags used by the C compiler during RELWITHDEBINFO builds."
 				}
 			],
 			"type" : "STRING",
@@ -451,7 +439,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker."
+					"value" : "Flags used by the linker during all build types."
 				}
 			],
 			"type" : "STRING",
@@ -467,7 +455,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during debug builds."
+					"value" : "Flags used by the linker during DEBUG builds."
 				}
 			],
 			"type" : "STRING",
@@ -483,7 +471,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during release minsize builds."
+					"value" : "Flags used by the linker during MINSIZEREL builds."
 				}
 			],
 			"type" : "STRING",
@@ -499,7 +487,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during release builds."
+					"value" : "Flags used by the linker during RELEASE builds."
 				}
 			],
 			"type" : "STRING",
@@ -515,7 +503,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during Release with Debug Info builds."
+					"value" : "Flags used by the linker during RELWITHDEBINFO builds."
 				}
 			],
 			"type" : "STRING",
@@ -525,10 +513,6 @@
 			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
 			"properties" : 
 			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
 				{
 					"name" : "HELPSTRING",
 					"value" : "No help, variable specified on the command line."
@@ -607,7 +591,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/root/RS"
+			"value" : "/root/research/RS"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -675,7 +659,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during the creation of modules."
+					"value" : "Flags used by the linker during the creation of modules during all build types."
 				}
 			],
 			"type" : "STRING",
@@ -691,7 +675,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during debug builds."
+					"value" : "Flags used by the linker during the creation of modules during DEBUG builds."
 				}
 			],
 			"type" : "STRING",
@@ -707,7 +691,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during release minsize builds."
+					"value" : "Flags used by the linker during the creation of modules during MINSIZEREL builds."
 				}
 			],
 			"type" : "STRING",
@@ -723,7 +707,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during release builds."
+					"value" : "Flags used by the linker during the creation of modules during RELEASE builds."
 				}
 			],
 			"type" : "STRING",
@@ -739,7 +723,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during Release with Debug Info builds."
+					"value" : "Flags used by the linker during the creation of modules during RELWITHDEBINFO builds."
 				}
 			],
 			"type" : "STRING",
@@ -907,7 +891,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during the creation of dll's."
+					"value" : "Flags used by the linker during the creation of shared libraries during all build types."
 				}
 			],
 			"type" : "STRING",
@@ -923,7 +907,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during debug builds."
+					"value" : "Flags used by the linker during the creation of shared libraries during DEBUG builds."
 				}
 			],
 			"type" : "STRING",
@@ -939,7 +923,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during release minsize builds."
+					"value" : "Flags used by the linker during the creation of shared libraries during MINSIZEREL builds."
 				}
 			],
 			"type" : "STRING",
@@ -955,7 +939,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during release builds."
+					"value" : "Flags used by the linker during the creation of shared libraries during RELEASE builds."
 				}
 			],
 			"type" : "STRING",
@@ -971,7 +955,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during Release with Debug Info builds."
+					"value" : "Flags used by the linker during the creation of shared libraries during RELWITHDEBINFO builds."
 				}
 			],
 			"type" : "STRING",
@@ -1019,7 +1003,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during the creation of static libraries."
+					"value" : "Flags used by the linker during the creation of static libraries during all build types."
 				}
 			],
 			"type" : "STRING",
@@ -1035,7 +1019,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during debug builds."
+					"value" : "Flags used by the linker during the creation of static libraries during DEBUG builds."
 				}
 			],
 			"type" : "STRING",
@@ -1051,7 +1035,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during release minsize builds."
+					"value" : "Flags used by the linker during the creation of static libraries during MINSIZEREL builds."
 				}
 			],
 			"type" : "STRING",
@@ -1067,7 +1051,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during release builds."
+					"value" : "Flags used by the linker during the creation of static libraries during RELEASE builds."
 				}
 			],
 			"type" : "STRING",
@@ -1083,7 +1067,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during Release with Debug Info builds."
+					"value" : "Flags used by the linker during the creation of static libraries during RELWITHDEBINFO builds."
 				}
 			],
 			"type" : "STRING",
@@ -1134,30 +1118,6 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "EXECUTABLE_OUTPUT_PATH",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Single output directory for building all executables."
-				}
-			],
-			"type" : "PATH",
-			"value" : ""
-		},
-		{
-			"name" : "LIBRARY_OUTPUT_PATH",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Single output directory for building all libraries."
-				}
-			],
-			"type" : "PATH",
-			"value" : ""
-		},
-		{
 			"name" : "RS_BINARY_DIR",
 			"properties" : 
 			[
@@ -1167,7 +1127,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/root/RS/build"
+			"value" : "/root/research/RS/build"
 		},
 		{
 			"name" : "RS_IS_TOP_LEVEL",
@@ -1191,7 +1151,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/root/RS"
+			"value" : "/root/research/RS"
 		}
 	],
 	"kind" : "cache",

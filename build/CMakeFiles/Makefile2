@@ -54,10 +54,10 @@ RM = /opt/cmake-3.21/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/RS
+CMAKE_SOURCE_DIR = /root/research/RS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/RS/build
+CMAKE_BINARY_DIR = /root/research/RS/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/RS.dir/clean
 CMakeFiles/RS.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/RS/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target RS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/research/RS/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target RS"
 .PHONY : CMakeFiles/RS.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/RS.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/RS/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/research/RS/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/RS.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/RS/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/research/RS/build/CMakeFiles 0
 .PHONY : CMakeFiles/RS.dir/rule
 
 # Convenience name for target.

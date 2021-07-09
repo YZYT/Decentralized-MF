@@ -57,10 +57,10 @@ RM = /opt/cmake-3.21/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/RS
+CMAKE_SOURCE_DIR = /root/research/RS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/RS/build
+CMAKE_BINARY_DIR = /root/research/RS/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/RS/build/CMakeFiles /root/RS/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/research/RS/build/CMakeFiles /root/research/RS/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/RS/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/research/RS/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -201,29 +201,29 @@ Server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/Server.cpp.s
 .PHONY : Server.cpp.s
 
-basic.o: basic.cpp.o
-.PHONY : basic.o
+base.o: base.cpp.o
+.PHONY : base.o
 
 # target to build an object file
-basic.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/basic.cpp.o
-.PHONY : basic.cpp.o
+base.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/base.cpp.o
+.PHONY : base.cpp.o
 
-basic.i: basic.cpp.i
-.PHONY : basic.i
+base.i: base.cpp.i
+.PHONY : base.i
 
 # target to preprocess a source file
-basic.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/basic.cpp.i
-.PHONY : basic.cpp.i
+base.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/base.cpp.i
+.PHONY : base.cpp.i
 
-basic.s: basic.cpp.s
-.PHONY : basic.s
+base.s: base.cpp.s
+.PHONY : base.s
 
 # target to generate assembly for a file
-basic.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/basic.cpp.s
-.PHONY : basic.cpp.s
+base.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/base.cpp.s
+.PHONY : base.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -267,9 +267,9 @@ help:
 	@echo "... Server.o"
 	@echo "... Server.i"
 	@echo "... Server.s"
-	@echo "... basic.o"
-	@echo "... basic.i"
-	@echo "... basic.s"
+	@echo "... base.o"
+	@echo "... base.i"
+	@echo "... base.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
