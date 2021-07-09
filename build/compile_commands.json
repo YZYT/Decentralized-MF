@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/root/RS/build",
+  "command": "/bin/g++-10  -I/root/RS/libs/eigen-3.3.9  -std=c++20 -O3 -O3 -DNDEBUG -std=gnu++2a -o CMakeFiles/RS.dir/main.cpp.o -c /root/RS/main.cpp",
+  "file": "/root/RS/main.cpp"
+},
+{
+  "directory": "/root/RS/build",
+  "command": "/bin/g++-10  -I/root/RS/libs/eigen-3.3.9  -std=c++20 -O3 -O3 -DNDEBUG -std=gnu++2a -o CMakeFiles/RS.dir/Data.cpp.o -c /root/RS/Data.cpp",
+  "file": "/root/RS/Data.cpp"
+},
+{
+  "directory": "/root/RS/build",
+  "command": "/bin/g++-10  -I/root/RS/libs/eigen-3.3.9  -std=c++20 -O3 -O3 -DNDEBUG -std=gnu++2a -o CMakeFiles/RS.dir/Client.cpp.o -c /root/RS/Client.cpp",
+  "file": "/root/RS/Client.cpp"
+},
+{
+  "directory": "/root/RS/build",
+  "command": "/bin/g++-10  -I/root/RS/libs/eigen-3.3.9  -std=c++20 -O3 -O3 -DNDEBUG -std=gnu++2a -o CMakeFiles/RS.dir/Server.cpp.o -c /root/RS/Server.cpp",
+  "file": "/root/RS/Server.cpp"
+},
+{
+  "directory": "/root/RS/build",
+  "command": "/bin/g++-10  -I/root/RS/libs/eigen-3.3.9  -std=c++20 -O3 -O3 -DNDEBUG -std=gnu++2a -o CMakeFiles/RS.dir/basic.cpp.o -c /root/RS/basic.cpp",
+  "file": "/root/RS/basic.cpp"
+}
+]
