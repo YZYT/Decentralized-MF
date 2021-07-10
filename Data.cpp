@@ -4,7 +4,7 @@
 #include "base.h"
 #include "Data.h"
 
-int R[MAXN][MAXM];
+rating R[MAXN][MAXM];
 vector<Client> clients(MAXN);
 
 MatrixXd U(MAXN, MAXK);
@@ -32,6 +32,7 @@ void readConfig(int argc, char *argv[]){
         else if(!strcmp(argv[i], "-output")){
             output = "../results/" + string(argv[++ i]);
             os.open(output + ".out");
+            os_tmp.open(output + ".tmp");
             os_csv.open(output + ".csv");
         }
         else if(!strcmp(argv[i], "-T")) T = atoi(argv[++ i]);
@@ -48,9 +49,11 @@ void readConfig(int argc, char *argv[]){
 
 void readTrainData(const string& filename){
     ifstream fin(filename);
-    int u, i, r, t;
+    uid u;
+    iid i;
+    rating r;
+    string t;
     cout << filename << endl;
-    int x = 1;
     while(fin >> u >> i >> r >> t){
         R[u][i] = r;
         clients[u].I_u.insert(i);
@@ -60,7 +63,10 @@ void readTrainData(const string& filename){
 }
 void readTestData(const string& filename){
     ifstream fin(filename);
-    int u, i, r, t;
+    uid u;
+    iid i;
+    rating r;
+    string t;
     while(fin >> u >> i >> r >> t){
         records_test.push_back({u, i, r});
     }
@@ -70,14 +76,14 @@ void readTestData(const string& filename){
 void initParam(){
     srand(time(0));
 
-    f(i, 0, U.rows() - 1){
-        f(j, 0, U.cols() - 1){
+    f(i, 0, (int)U.rows() - 1){
+        f(j, 0, (int)U.cols() - 1){
             U(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
     }
 
-    f(i, 0, V.rows() - 1){
-        f(j, 0, V.cols() - 1){
+    f(i, 0, (int)V.rows() - 1){
+        f(j, 0, (int)V.cols() - 1){
             V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
     }

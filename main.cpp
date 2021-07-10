@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
     readTestData(testdata);
     initParam();
     Server::train();
+    Server::performance();
     endTime = clock();
     cout << 1.0 * (endTime - startTime) / CLOCKS_PER_SEC << endl;
 //    MatrixXd a(2, 2);

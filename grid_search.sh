@@ -1,0 +1,1 @@
+g++-10 -o grid_search grid_search.cpp && ./grid_search

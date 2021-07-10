@@ -16,10 +16,12 @@ using namespace Eigen;
 const int MAXN = 1e3 + 5, MAXM = 2e3 + 5, MAXK = 40;
 
 
-extern int R[MAXN][MAXM];
+extern rating R[MAXN][MAXM];
 extern vector<Client> clients;
 struct Record{
-    int u, i, r;
+    uid     u;
+    iid     i;
+    rating  r;
 };
 extern vector<Record> records;
 extern vector<Record> records_test;
