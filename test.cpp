@@ -3,7 +3,19 @@
 #include <vector>
 using namespace std;
 #define DEBUG(os,x) os << #x << " : " << x << endl;
+class GG{
+public:
+    void work(int i){
+        t[i].go();
+    }
+    void go(){
+        cout << "QQ";
+    }
+};
+
+
 int main(int, char**) {
+    t[1].go();
     // ifstream os;
     // os.open("../data/ML100K/ML100K_copy1_train.txt");
     // int u, i, r, t;

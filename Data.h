@@ -29,10 +29,8 @@ extern vector<Record> records_test;
 extern MatrixXd U;
 extern MatrixXd V;
 
-extern double alpha;
-extern double eta;
-extern int T;
-extern string traindata, testdata, output;
+
+
 
 void readConfig(int argc, char *argv[]);
 void readTrainData(const string& filename);

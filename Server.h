@@ -5,18 +5,19 @@
 #ifndef RS_SERVER_H
 #define RS_SERVER_H
 
-#include "base.h"
+#include "Base.h"
 #include "Data.h"
 
 class Server {
 public:
-    static void train();
-    static metrics evaluate();
-    static void performance();
+    Server()=default;
+    void train();
+    metrics evaluate();
+    void performance();
 
 private:
-    static void update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v);
-    static rating predict(uid u, iid i);
+    void update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v);
+    rating predict(uid u, iid i);
 
 };
 

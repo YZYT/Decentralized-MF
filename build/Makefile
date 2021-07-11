@@ -129,6 +129,54 @@ RS/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/build
 .PHONY : RS/fast
 
+Base.o: Base.cpp.o
+.PHONY : Base.o
+
+# target to build an object file
+Base.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/Base.cpp.o
+.PHONY : Base.cpp.o
+
+Base.i: Base.cpp.i
+.PHONY : Base.i
+
+# target to preprocess a source file
+Base.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/Base.cpp.i
+.PHONY : Base.cpp.i
+
+Base.s: Base.cpp.s
+.PHONY : Base.s
+
+# target to generate assembly for a file
+Base.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/Base.cpp.s
+.PHONY : Base.cpp.s
+
+Builder.o: Builder.cpp.o
+.PHONY : Builder.o
+
+# target to build an object file
+Builder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/Builder.cpp.o
+.PHONY : Builder.cpp.o
+
+Builder.i: Builder.cpp.i
+.PHONY : Builder.i
+
+# target to preprocess a source file
+Builder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/Builder.cpp.i
+.PHONY : Builder.cpp.i
+
+Builder.s: Builder.cpp.s
+.PHONY : Builder.s
+
+# target to generate assembly for a file
+Builder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/Builder.cpp.s
+.PHONY : Builder.cpp.s
+
 Client.o: Client.cpp.o
 .PHONY : Client.o
 
@@ -201,30 +249,6 @@ Server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/Server.cpp.s
 .PHONY : Server.cpp.s
 
-base.o: base.cpp.o
-.PHONY : base.o
-
-# target to build an object file
-base.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/base.cpp.o
-.PHONY : base.cpp.o
-
-base.i: base.cpp.i
-.PHONY : base.i
-
-# target to preprocess a source file
-base.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/base.cpp.i
-.PHONY : base.cpp.i
-
-base.s: base.cpp.s
-.PHONY : base.s
-
-# target to generate assembly for a file
-base.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RS.dir/build.make CMakeFiles/RS.dir/base.cpp.s
-.PHONY : base.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -258,6 +282,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... RS"
+	@echo "... Base.o"
+	@echo "... Base.i"
+	@echo "... Base.s"
+	@echo "... Builder.o"
+	@echo "... Builder.i"
+	@echo "... Builder.s"
 	@echo "... Client.o"
 	@echo "... Client.i"
 	@echo "... Client.s"
@@ -267,9 +297,6 @@ help:
 	@echo "... Server.o"
 	@echo "... Server.i"
 	@echo "... Server.s"
-	@echo "... base.o"
-	@echo "... base.i"
-	@echo "... base.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -36,8 +36,16 @@ typedef int                     uid;       /* user id */
 typedef int                     iid;       /* item id */
 
 
+extern string traindata;
+extern string testdata;
+extern string output;
 
 extern ofstream os;
 extern ofstream os_tmp;
 extern ofstream os_csv;
+
+extern double alpha;
+extern double eta;
+extern int T;
+
 #endif //RS_BASE_H

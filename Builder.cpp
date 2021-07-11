@@ -1,21 +1,12 @@
-//
-// Created by mac on 2021/6/7.
-//
-#include "Base.h"
-#include "Data.h"
+#include "Builder.h"
+#include "Client.h"
 
-rating R[MAXN][MAXM];
-vector<Client> clients(MAXN);
+Builder::Builder(int argc, char *argv[]){
+    readConfig(argc, argv);
+    readTrainData(traindata);
+}
 
-MatrixXd U(MAXN, MAXK);
-MatrixXd V(MAXM, MAXK);
-
-vector<Record> records;
-vector<Record> records_test;
-
-
-
-void readConfig(int argc, char *argv[]){
+void Builder::readConfig(int argc, char *argv[]){
     f(i, 1, argc - 1){
         if(!strcmp(argv[i], "-alpha")) alpha = atof(argv[++ i]);
         else if(!strcmp(argv[i], "-eta")) eta = atof(argv[++ i]);
@@ -37,9 +28,10 @@ void readConfig(int argc, char *argv[]){
     PRINT(os, T)
 
     CSV(os_csv, "iter", "MSE", "MAE")
+
 }
 
-void readTrainData(const string& filename){
+void Builder::readTrainData(const string& filename){
     ifstream fin(filename);
     uid u;
     iid i;
@@ -47,37 +39,8 @@ void readTrainData(const string& filename){
     string t;
     cout << filename << endl;
     while(fin >> u >> i >> r >> t){
-        R[u][i] = r;
-        clients[u].I_u.insert(i);
-        records.push_back({u, i, r});
+        clients[u].rate(i, r);
+        // records.push_back({u, i, r});
     }
     fin.close();
-}
-void readTestData(const string& filename){
-    ifstream fin(filename);
-    uid u;
-    iid i;
-    rating r;
-    string t;
-    while(fin >> u >> i >> r >> t){
-        records_test.push_back({u, i, r});
-    }
-
-    fin.close();
-}
-void initParam(){
-    srand(time(0));
-
-    f(i, 0, (int)U.rows() - 1){
-        f(j, 0, (int)U.cols() - 1){
-            U(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
-        }
-    }
-
-    f(i, 0, (int)V.rows() - 1){
-        f(j, 0, (int)V.cols() - 1){
-            V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
-        }
-    }
-
 }

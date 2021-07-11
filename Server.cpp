@@ -1,5 +1,6 @@
 #include "Server.h"
 
+
 void Server::train() {
     random_shuffle(records.begin(), records.end());
     f(iter, 1, T){

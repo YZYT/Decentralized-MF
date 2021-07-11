@@ -1,11 +1,13 @@
-#include "base.h"
+#include "Base.h"
 #include "Data.h"
 #include "Server.h"
+#include "Builder.h"
 
 int main(int argc, char *argv[]) {
     clock_t startTime,endTime;
-    startTime = clock();//计时开始
-    readConfig(argc, argv);
+    startTime = clock();
+    Builder builder(argc, argv);
+    // Server server(argc, argv);
     readTrainData(traindata);
     readTestData(testdata);
     initParam();

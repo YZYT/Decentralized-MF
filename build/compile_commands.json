@@ -21,7 +21,12 @@
 },
 {
   "directory": "/root/research/RS/build",
-  "command": "/bin/g++-10  -I/root/research/RS/libs/eigen-3.3.9  -std=c++20 -O3 -g -std=gnu++2a -o CMakeFiles/RS.dir/base.cpp.o -c /root/research/RS/base.cpp",
-  "file": "/root/research/RS/base.cpp"
+  "command": "/bin/g++-10  -I/root/research/RS/libs/eigen-3.3.9  -std=c++20 -O3 -g -std=gnu++2a -o CMakeFiles/RS.dir/Base.cpp.o -c /root/research/RS/Base.cpp",
+  "file": "/root/research/RS/Base.cpp"
+},
+{
+  "directory": "/root/research/RS/build",
+  "command": "/bin/g++-10  -I/root/research/RS/libs/eigen-3.3.9  -std=c++20 -O3 -g -std=gnu++2a -o CMakeFiles/RS.dir/Builder.cpp.o -c /root/research/RS/Builder.cpp",
+  "file": "/root/research/RS/Builder.cpp"
 }
 ]

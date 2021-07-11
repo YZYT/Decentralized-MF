@@ -5,13 +5,12 @@
 #ifndef RS_CLIENT_H
 #define RS_CLIENT_H
 
-#include "base.h"
+#include "Base.h"
 
 using namespace std;
 
 
 class Client {
-    friend void readTrainData(const string& filename);
     set<int> I_u;
 public:
     Client()= default;
