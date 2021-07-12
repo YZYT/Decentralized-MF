@@ -78,11 +78,12 @@ void Builder::buildGraph(){
 
     f(i, 0, MAXN - 1){
         f(j, i + 1, MAXN - 1){
-            double w = calcSimilarity(clients[i], clients[j]);
-            if(w == 0){
-                SAVED += 1;
-                continue;
-            }
+            double w;
+            // w = calcSimilarity(clients[i], clients[j]);
+            // if(w == 0){
+            //     SAVED += 1;
+            //     continue;
+            // }
             server->clients[i].neighbours.push_back(make_pair(&(server->clients[j]), w));
             server->clients[j].neighbours.push_back(make_pair(&(server->clients[i]), w));
         }

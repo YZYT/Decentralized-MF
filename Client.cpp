@@ -95,8 +95,8 @@ void Client::update(iid i, rating r, VectorXd* grad_u, VectorXd* grad_v) {
 }
 
 void Client::receive_grad(iid i, VectorXd* grad_v){
-    neigh_grads_v[i].update(grad_v);
-    // V.row(i) -= eta * *grad_v;
+    // neigh_grads_v[i].update(grad_v);
+    V.row(i) -= eta * *grad_v;
     // neigh_grads_v.push_back(i);
 }
 

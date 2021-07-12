@@ -4,26 +4,25 @@
 void Server::initParam(){
     srand(233);
     VectorXd U_u(MAXK);
-
+    int cnt = 0;
     for(auto& client: clients){
         f(i, 0, U_u.rows() - 1){
             U_u(i) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+            cnt ++;
         }
         client.initParam_U(U_u);
     }
 
 
     MatrixXd V(MAXM, MAXK);
-    for(auto& client: clients){
-        f(i, 0, V.rows() - 1){
-            f(j, 0, V.cols() - 1){
-                V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
-            }
+    f(i, 0, V.rows() - 1){
+        f(j, 0, V.cols() - 1){
+            V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
+    }
+    for(auto& client: clients){
         client.initParam_V(V);
     }
-    clients[3].print();
-    assert(1 == 0);
     
     // for(auto& client: clients){
     //     client.initParam();
@@ -33,29 +32,18 @@ void Server::initParam(){
 
 void Server::train() {
     // random_shuffle(records.begin(), records.end());
-    metrics tmp(0, 0);
-    for(auto& client: clients){
-        tmp = tmp + client.evaluate_global();
-    }
-
-    rating MSE = getMSE(tmp) / records_test.size();
-    rating MAE = getMAE(tmp) / records_test.size();
-    PRINT(os, MSE)
-    PRINT(os, MAE)
-
-
 
     f(iter, 1, T * 5){
         CERR(iter)
-        int num = 0;
+
         for(auto& client: clients){
             client.train();
         }
         // assert(1 == 0);
 
-        for(auto& client: clients){
-            client.reach_consensus();
-        }
+        // for(auto& client: clients){
+        //     client.reach_consensus();
+        // }
         
         eta = eta * 0.9;
         
