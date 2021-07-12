@@ -13,28 +13,16 @@
 using namespace std;
 using namespace Eigen;
 
-const int MAXN = 1e3 + 5, MAXM = 2e3 + 5, MAXK = 40;
 
 
-extern rating R[MAXN][MAXM];
-extern vector<Client> clients;
-struct Record{
-    uid     u;
-    iid     i;
-    rating  r;
-};
+
 extern vector<Record> records;
-extern vector<Record> records_test;
-
-extern MatrixXd U;
-extern MatrixXd V;
 
 
 
 
-void readConfig(int argc, char *argv[]);
 void readTrainData(const string& filename);
 void readTestData(const string& filename);
-void initParam();
+
 
 #endif //RS_DATA_H

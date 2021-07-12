@@ -1,21 +1,52 @@
 #include "Server.h"
 
 
+void Server::initParam(){
+    srand(time(0));
+    
+
+    for(auto& client: clients){
+        client.initParam();
+    }
+
+}
+
 void Server::train() {
-    random_shuffle(records.begin(), records.end());
-    f(iter, 1, T){
-        for(auto record: records){
-            uid u = record.u;
-            iid i = record.i;
-            rating r = record.r;
-            VectorXd grad_u(MAXK), grad_v(MAXK);
-            update(u, i, r, grad_u, grad_v);
+    // random_shuffle(records.begin(), records.end());
+    metrics tmp(0, 0);
+    for(auto& client: clients){
+        tmp = tmp + client.evaluate_global();
+    }
+    rating MSE = getMSE(tmp) / records_test.size();
+    rating MAE = getMAE(tmp) / records_test.size();
+    PRINT(os, MSE)
+    PRINT(os, MAE)
+
+
+
+    f(iter, 1, T * 5){
+        CERR(iter)
+        int num = 0;
+        for(auto& client: clients){
+            client.train();
         }
-        eta = eta * 0.95;
-        if(iter % 20 == 0){
-            metrics tmp = evaluate();
-            rating MSE = getMSE(tmp);
-            rating MAE = getMAE(tmp);
+        // assert(1 == 0);
+
+        for(auto& client: clients){
+            client.reach_consensus();
+        }
+        
+        if(T % 5 == 0) eta = eta * 0.9;
+        if(iter % 10 == 0){
+            metrics tmp(0, 0);
+            for(auto& client: clients){
+                tmp = tmp + client.evaluate_global();
+            }
+
+            
+            rating MSE = getMSE(tmp) / records_test.size();
+            rating MAE = getMAE(tmp) / records_test.size();
+
             PRINT(os, iter)
             PRINT(os, MSE)
             PRINT(os, MAE)
@@ -24,40 +55,7 @@ void Server::train() {
     }
 }
 
-void Server::update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v) {
-    VectorXd U_u = U.row(u);
-    VectorXd V_i = V.row(i);
-    rating e = 1.0 * r - predict(u, i);
-    grad_u = -e * V_i + alpha * U_u;
-    grad_v = -e * U_u + alpha * V_i;
-
-    U.row(u) -= eta * grad_u;
-    V.row(i) -= eta * grad_v;
-
-}
-
-metrics Server::evaluate() {
-    rating MSE = 0, MAE = 0;
-    for(auto record: records_test){
-        uid u = record.u;
-        iid i = record.i;
-        rating r = record.r;
-        rating r_hat = predict(u, i);
-        MSE += (r - r_hat) * (r - r_hat);
-        MAE += fabs(r - r_hat);
-    }
-    MSE = sqrt(MSE / records_test.size());
-    MAE = MAE / records_test.size();
-    return metrics(MSE, MAE);
-}
-
-rating Server::predict(uid u, iid i){
-    VectorXd U_u = U.row(u);
-    VectorXd V_i = V.row(i);
-    return (U_u.transpose() * V_i)(0);
-}
-
-void Server::performance() {
-    metrics m = evaluate();
-    os_tmp << getMSE(m) << " " << getMAE(m) << endl;
-}
+// void Server::performance() {
+//     metrics m = evaluate();
+//     os_tmp << getMSE(m) << " " << getMAE(m) << endl;
+// }

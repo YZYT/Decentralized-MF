@@ -1,5 +1,6 @@
 #include "Base.h"
 
+
 ofstream os;
 ofstream os_tmp;
 ofstream os_csv;
@@ -11,7 +12,9 @@ string testdata = "../ml-100k/u1.test";
 
 string output;
 
-
 double alpha = 0.01;
-double eta = 0.01;
+double eta = 0.03;
 int T = 200;
+
+vector<Record> records_test;
+vector<Record> records;

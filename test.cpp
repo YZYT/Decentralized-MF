@@ -1,33 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 #define DEBUG(os,x) os << #x << " : " << x << endl;
+
 class GG{
-public:
-    void work(int i){
-        t[i].go();
-    }
-    void go(){
-        cout << "QQ";
-    }
+    int a;
 };
-
-
 int main(int, char**) {
-    t[1].go();
-    // ifstream os;
-    // os.open("../data/ML100K/ML100K_copy1_train.txt");
-    // int u, i, r, t;
-    // if(os >> u >> i >> r >> t){
-    //     cout << "OK" << " " << u << endl;
-    // }
-    // else{
-    //     cout << "FAILED" << endl;
-    // }
-    pair<int, pair<int, int>> a(1, make_pair(2, 3));
-    pair<int,int> b(1, 2);
-    vector<pair<int,int>> vec;
-    vec.push_back(b);
+    unordered_map<int, int> a;
+    a[1] = 1;
+    a[2] = 2;
+    if(a.count(1)) cout << "QQ" << endl;
+    if(!a.count(3)) cout << "QQ" << endl;
+    
 
 }

@@ -6,15 +6,20 @@
 int main(int argc, char *argv[]) {
     clock_t startTime,endTime;
     startTime = clock();
-    Builder builder(argc, argv);
-    // Server server(argc, argv);
-    readTrainData(traindata);
-    readTestData(testdata);
-    initParam();
-    Server::train();
-    Server::performance();
+
+    Server* server = Builder().build(argc, argv);
+
+    // CERR(server->clients.size());
+    
+    server->initParam();
+
+
+    server->train();
+
+    delete server;
+
     endTime = clock();
-    cout << 1.0 * (endTime - startTime) / CLOCKS_PER_SEC << endl;
+    cout << "Run Time:" << 1.0 * (endTime - startTime) / CLOCKS_PER_SEC << endl;
 //    MatrixXd a(2, 2);
 //    MatrixXd b(2, 2);
 //    a(0, 0) = 1;

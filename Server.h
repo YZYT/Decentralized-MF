@@ -7,17 +7,21 @@
 
 #include "Base.h"
 #include "Data.h"
+#include "Client.h"
 
 class Server {
+    friend class Builder;
 public:
-    Server()=default;
+    Server(){
+        clients.resize(MAXN);
+    }
+    void initParam();
     void train();
     metrics evaluate();
     void performance();
-
+    vector<Client> clients;
 private:
-    void update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v);
-    rating predict(uid u, iid i);
+
 
 };
 

@@ -9,6 +9,17 @@
         "string": "cpp",
         "ctime": "cpp",
         "span": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "variant": "cpp",
+        "compare": "cpp",
+        "exception": "cpp",
+        "memory_resource": "cpp",
+        "istream": "cpp",
+        "new": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "system_error": "cpp",
+        "typeinfo": "cpp"
     }
 }
