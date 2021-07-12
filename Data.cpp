@@ -74,18 +74,20 @@ void readTestData(const string& filename){
     fin.close();
 }
 void initParam(){
-    srand(time(0));
+    srand(233);
 
     f(i, 0, (int)U.rows() - 1){
         f(j, 0, (int)U.cols() - 1){
             U(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
     }
+    CERR(U.row(3))
 
     f(i, 0, (int)V.rows() - 1){
         f(j, 0, (int)V.cols() - 1){
             V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
     }
+    CERR(V.row(2))
 
 }

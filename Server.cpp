@@ -1,7 +1,7 @@
 #include "Server.h"
 
 void Server::train() {
-    random_shuffle(records.begin(), records.end());
+
     f(iter, 1, T){
         for(auto record: records){
             uid u = record.u;
@@ -20,6 +20,14 @@ void Server::train() {
             PRINT(os, MAE)
             CSV(os_csv, iter, MSE, MAE)
         }
+    }
+    f(i, 1, 10){
+        int a = rand() % 500 + 1;
+        CERR(U.row(a))
+    }
+    f(i, 1, 10){
+        int a = rand() % 500 + 1;
+        CERR(V.row(a))
     }
 }
 
