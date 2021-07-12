@@ -4,13 +4,13 @@
 void Server::initParam(){
     srand(233);
     VectorXd U_u(MAXK);
+
     for(auto& client: clients){
-        f(i, 0, U_u.cols() - 1){
+        f(i, 0, U_u.rows() - 1){
             U_u(i) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
         client.initParam_U(U_u);
     }
-
 
 
     MatrixXd V(MAXM, MAXK);
@@ -22,7 +22,7 @@ void Server::initParam(){
         }
         client.initParam_V(V);
     }
-    clients[0].print();
+    clients[3].print();
     assert(1 == 0);
     
     // for(auto& client: clients){
