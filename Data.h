@@ -13,7 +13,7 @@
 using namespace std;
 using namespace Eigen;
 
-const int MAXN = 1e3 + 5, MAXM = 2e3 + 5, MAXK = 40;
+const int MAXN = 1e3 + 5, MAXM = 2e3 + 5, MAXK = 20;
 
 
 extern rating R[MAXN][MAXM];
