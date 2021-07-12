@@ -9,6 +9,9 @@
         "string": "cpp",
         "ctime": "cpp",
         "span": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "*.expression": "cpp",
+        "alignedvector3": "cpp",
+        "fft": "cpp"
     }
 }

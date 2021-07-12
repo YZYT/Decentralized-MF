@@ -79,15 +79,17 @@ void initParam(){
     f(i, 0, (int)U.rows() - 1){
         f(j, 0, (int)U.cols() - 1){
             U(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+            if(i == 0 && j <= 1) CERR(U(i, j))
         }
     }
-    CERR(U.row(0))
+    assert(1 == 0);
+    // CERR(U.row(0))
 
     f(i, 0, (int)V.rows() - 1){
         f(j, 0, (int)V.cols() - 1){
             V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
     }
-    CERR(V.row(2))
+    // CERR(V.row(2))
 
 }
