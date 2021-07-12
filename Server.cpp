@@ -22,7 +22,7 @@ void Server::initParam(){
         }
         client.initParam_V(V);
     }
-    clients[3].print();
+    clients[0].print();
     assert(1 == 0);
     
     // for(auto& client: clients){
