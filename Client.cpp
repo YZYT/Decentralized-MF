@@ -4,16 +4,17 @@
 
 #include "Client.h"
 
-void Client::initParam(){
+void Client::initParam(VectorXd& V_i){
     
     f(i, 0, (int)U_u.cols() - 1){
         U_u(i) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
     }
     
     f(i, 0, (int)V.rows() - 1){
-        f(j, 0, (int)V.cols() - 1){
-            V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
-        }
+        V.row(i) = V_i;
+        // f(j, 0, (int)V.cols() - 1){
+        //     V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+        // }
     }
 }
 
@@ -42,7 +43,7 @@ void Client::train(){
         rating r = ix.r;
         VectorXd* grad_u = new VectorXd(MAXK);
         VectorXd* grad_v = new VectorXd(MAXK);
-        update(i, r, grad_u, grad_v); 
+        update(i, r, grad_u, grad_v);
         
         for(auto edge: neighbours){
             Client* neighbour = edge.first;
@@ -89,8 +90,9 @@ void Client::update(iid i, rating r, VectorXd* grad_u, VectorXd* grad_v) {
 
 void Client::receive_grad(iid i, VectorXd* grad_v){
     neigh_grads_v[i].update(grad_v);
+    // V.row(i) -= eta * *grad_v;
     // neigh_grads_v.push_back(i);
-} 
+}
 
 rating Client::predict(iid i){
     VectorXd V_i = V.row(i);
@@ -117,8 +119,6 @@ metrics Client::evaluate_global() {
         iid i = ix.i;
         rating r = ix.r;
         rating r_hat = predict(i);
-        // CERR(r)
-        // CERR(r_hat)
         MSE += (r - r_hat) * (r - r_hat);
         MAE += fabs(r - r_hat);
     }
@@ -138,4 +138,23 @@ metrics Client::evaluate_self() {
         MAE += fabs(r - r_hat);
     }
     return metrics(MSE, MAE);
+}
+
+
+void Client::print() {
+    CERR(U_u)
+    f(i, 1, 10){
+        int a = rand() % 500 + 1;
+        CERR(V.row(a))
+    }
+    // int t = 10;
+    // for(auto ix: I_u_test){
+    //     t --;
+    //     if(t < 0) break;
+    //     iid i = ix.i;
+    //     rating r = ix.r;
+    //     rating r_hat = predict(i);
+    //     CERR(r)
+    //     CERR(r_hat)
+    // }
 }

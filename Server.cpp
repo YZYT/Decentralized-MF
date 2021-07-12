@@ -4,9 +4,13 @@
 void Server::initParam(){
     srand(time(0));
     
-
+    VectorXd V_i(MAXK);
+    f(i, 0, V_i.cols() - 1){
+        V_i(i) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+    }
+    
     for(auto& client: clients){
-        client.initParam();
+        client.initParam(V_i);
     }
 
 }
@@ -17,6 +21,7 @@ void Server::train() {
     for(auto& client: clients){
         tmp = tmp + client.evaluate_global();
     }
+
     rating MSE = getMSE(tmp) / records_test.size();
     rating MAE = getMAE(tmp) / records_test.size();
     PRINT(os, MSE)
@@ -36,14 +41,18 @@ void Server::train() {
             client.reach_consensus();
         }
         
-        if(T % 5 == 0) eta = eta * 0.9;
-        if(iter % 10 == 0){
+        eta = eta * 0.9;
+        
+        // f(i, 1, 3){
+        //     int x = rand() % 500 + 1;
+        //     clients[x].print();
+        // }
+        if(iter % 1 == 0 && iter > 3){
             metrics tmp(0, 0);
             for(auto& client: clients){
                 tmp = tmp + client.evaluate_global();
             }
 
-            
             rating MSE = getMSE(tmp) / records_test.size();
             rating MAE = getMAE(tmp) / records_test.size();
 

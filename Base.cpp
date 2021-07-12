@@ -13,7 +13,7 @@ string testdata = "../ml-100k/u1.test";
 string output;
 
 double alpha = 0.01;
-double eta = 0.03;
+double eta = 0.01;
 int T = 200;
 
 vector<Record> records_test;

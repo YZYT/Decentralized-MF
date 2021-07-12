@@ -90,7 +90,7 @@ public:
             grad = new VectorXd(*_grad);
         }
         else{
-            *grad = (*grad * cnt + *_grad) / (cnt + 1);
+            *grad += *_grad;
             cnt ++;
         }
     }
