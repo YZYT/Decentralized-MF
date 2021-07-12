@@ -2,16 +2,32 @@
 
 
 void Server::initParam(){
-    srand(time(0));
-    
-    VectorXd V_i(MAXK);
-    f(i, 0, V_i.cols() - 1){
-        V_i(i) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
-    }
-    
+    srand(233);
+    VectorXd U_u(MAXK);
     for(auto& client: clients){
-        client.initParam(V_i);
+        f(i, 0, U_u.cols() - 1){
+            U_u(i) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+        }
+        client.initParam_U(U_u);
     }
+
+
+
+    MatrixXd V(MAXM, MAXK);
+    for(auto& client: clients){
+        f(i, 0, V.rows() - 1){
+            f(j, 0, V.cols() - 1){
+                V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+            }
+        }
+        client.initParam_V(V);
+    }
+    clients[3].print();
+    assert(1 == 0);
+    
+    // for(auto& client: clients){
+    //     client.initParam();
+    // }
 
 }
 

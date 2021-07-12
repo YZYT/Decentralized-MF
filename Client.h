@@ -36,7 +36,9 @@ public:
         eta_v = 0.01;
     };
     void initial();
-    void initParam(VectorXd& V_i);
+    void initParam();
+    void initParam_U(VectorXd& _U_u);
+    void initParam_V(MatrixXd& _V);
     void rate(iid i, rating r);
     void rate_test(iid i, rating r);
     void train();

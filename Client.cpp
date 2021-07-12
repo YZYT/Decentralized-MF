@@ -4,18 +4,24 @@
 
 #include "Client.h"
 
-void Client::initParam(VectorXd& V_i){
+void Client::initParam(){
     
     f(i, 0, (int)U_u.cols() - 1){
         U_u(i) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
     }
     
     f(i, 0, (int)V.rows() - 1){
-        V.row(i) = V_i;
-        // f(j, 0, (int)V.cols() - 1){
-        //     V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
-        // }
+        f(j, 0, (int)V.cols() - 1){
+            V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+        }
     }
+}
+
+void Client::initParam_U(VectorXd& _U_u){
+    U_u = _U_u;
+}
+void Client::initParam_V(MatrixXd& _V){
+    V = _V;
 }
 
 void Client::rate(iid i, rating r){
@@ -143,10 +149,7 @@ metrics Client::evaluate_self() {
 
 void Client::print() {
     CERR(U_u)
-    f(i, 1, 10){
-        int a = rand() % 500 + 1;
-        CERR(V.row(a))
-    }
+    CERR(V.row(2))
     // int t = 10;
     // for(auto ix: I_u_test){
     //     t --;
