@@ -17,7 +17,7 @@ private:
     MatrixXd                        V;
     double                          eta_u;
     double                          eta_v;
-    set<Interaction>                I_u;
+    vector<Interaction>             I_u;
     set<Interaction>                I_u_test;
     vector<Edge>                    neighbours;
     Grads_neigh                     neigh_grads_v[MAXM];
@@ -25,7 +25,7 @@ private:
     vector<VectorXd*>               pool;
 
     void update(iid i, rating r, VectorXd* grad_u, VectorXd* grad_v);
-    void receive_grad(iid i, VectorXd* grad_v);
+    void receive_grad(iid i, VectorXd* grad_v, double weight);
     rating predict(iid i);
 
 public:
@@ -41,7 +41,7 @@ public:
     void initParam_V(MatrixXd& _V);
     void rate(iid i, rating r);
     void rate_test(iid i, rating r);
-    void train();
+    void train(iid i, rating r);
     void reach_consensus();
     metrics evaluate_local();
     metrics evaluate_global();

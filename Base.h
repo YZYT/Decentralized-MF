@@ -83,14 +83,15 @@ public:
     }
     ~Grads_neigh(){
         if(grad) delete grad;
+        grad = 0;
     }
-    void update(VectorXd *_grad){
+    void update(VectorXd *_grad, double weight){
         if(!grad){
             cnt = 1;
-            grad = new VectorXd(*_grad);
+            grad = new VectorXd(*_grad * weight);
         }
         else{
-            *grad += *_grad;
+            *grad += *_grad * weight;
             cnt ++;
         }
     }

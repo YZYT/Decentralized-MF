@@ -54,6 +54,11 @@ void Builder::readTrainData(const string& filename){
         clients[u].rate(i, r);
         records.push_back({u, i, r});
     }
+    
+    for(auto& client: clients){
+        sort(client.I_u.begin(), client.I_u.end());
+    }
+
     fin.close();
 }
 
@@ -79,11 +84,11 @@ void Builder::buildGraph(){
     f(i, 0, MAXN - 1){
         f(j, i + 1, MAXN - 1){
             double w;
-            // w = calcSimilarity(clients[i], clients[j]);
-            // if(w == 0){
-            //     SAVED += 1;
-            //     continue;
-            // }
+            w = calcSimilarity(clients[i], clients[j]);
+            if(w == 0){
+                SAVED += 1;
+                continue;
+            }
             server->clients[i].neighbours.push_back(make_pair(&(server->clients[j]), w));
             server->clients[j].neighbours.push_back(make_pair(&(server->clients[i]), w));
         }
@@ -109,6 +114,6 @@ double Builder::calcSimilarity(Client& u, Client& v){
             v_it ++;
         }
     }
-    if(cnt < 10) return 0;
+    if(cnt < 2) return 0;
     return cnt / sqrt(1.0 *  u.I_u.size() * v.I_u.size());
 }

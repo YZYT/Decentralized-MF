@@ -6,7 +6,7 @@
 
 void Client::initParam(){
     
-    f(i, 0, (int)U_u.cols() - 1){
+    f(i, 0, (int)U_u.rows() - 1){
         U_u(i) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
     }
     
@@ -25,7 +25,7 @@ void Client::initParam_V(MatrixXd& _V){
 }
 
 void Client::rate(iid i, rating r){
-    I_u.insert({i, r});
+    I_u.push_back({i, r});
 }
 
 void Client::rate_test(iid i, rating r){
@@ -41,39 +41,42 @@ void Client::initial(){
     // neigh_grads_v.clear();
 }
 
-void Client::train(){
+void Client::train(iid i, rating r){
+        
+    if(I_u.size() == 0) return;
     initial();
 
-    for(auto ix: I_u){
-        iid i = ix.i;
-        rating r = ix.r;
-        VectorXd* grad_u = new VectorXd(MAXK);
-        VectorXd* grad_v = new VectorXd(MAXK);
-        update(i, r, grad_u, grad_v);
-        
-        for(auto edge: neighbours){
-            Client* neighbour = edge.first;
-            neighbour->receive_grad(i, grad_v);
-        }
+    // int index = rand() % I_u.size();
+    // iid i = I_u[index].i;
+    // rating r = I_u[index].r;
 
-        pool.push_back(grad_v);
-        delete grad_u;
+
+    VectorXd* grad_u = new VectorXd(MAXK);
+    VectorXd* grad_v = new VectorXd(MAXK);
+
+    update(i, r, grad_u, grad_v);
+    
+    for(auto edge: neighbours){
+        Client* neighbour = edge.first;
+        neighbour->receive_grad(i, grad_v, edge.second);
     }
+
+    pool.push_back(grad_v);
+    delete grad_u;
 }
 
 void Client::reach_consensus(){
 
-    // VectorXd grad_v(MAXK);
-    // cout << grad_v << endl;
-    // CERR(neigh_grads_v.size())
-    // cout << "QQQQ" << endl;
     f(i, 0, MAXM - 1){
 
         VectorXd* neigh_grad_v = neigh_grads_v[i].grad;
         if(!neigh_grad_v) continue;
         // assert(V.row(i).size() == neigh_grad_v->size());
-        // cout << i << endl;
-        V.row(i) -= eta * *neigh_grad_v;
+
+        // CERR(*neigh_grad_v);
+        
+        // CERR(neigh_grads_v[i].cnt)
+        V.row(i) -= eta * *neigh_grad_v / neigh_grads_v[i].cnt;
 
         delete neigh_grad_v;
         neigh_grads_v[i].grad = 0;
@@ -94,10 +97,9 @@ void Client::update(iid i, rating r, VectorXd* grad_u, VectorXd* grad_v) {
     V.row(i) -= eta * *grad_v;
 }
 
-void Client::receive_grad(iid i, VectorXd* grad_v){
-    // neigh_grads_v[i].update(grad_v);
-    V.row(i) -= eta * *grad_v;
-    // neigh_grads_v.push_back(i);
+void Client::receive_grad(iid i, VectorXd* grad_v, double weight){
+    neigh_grads_v[i].update(grad_v, weight);
+    // V.row(i) -= eta * *grad_v;
 }
 
 rating Client::predict(iid i){
@@ -111,6 +113,8 @@ metrics Client::evaluate_local() {
         iid i = ix.i;
         rating r = ix.r;
         rating r_hat = predict(i);
+        if(r_hat < 1) r_hat = 1;
+        if(r_hat > 5) r_hat = 5;
         MSE += (r - r_hat) * (r - r_hat);
         MAE += fabs(r - r_hat);
     }
@@ -125,6 +129,8 @@ metrics Client::evaluate_global() {
         iid i = ix.i;
         rating r = ix.r;
         rating r_hat = predict(i);
+        if(r_hat < 1) r_hat = 1;
+        if(r_hat > 5) r_hat = 5;
         MSE += (r - r_hat) * (r - r_hat);
         MAE += fabs(r - r_hat);
     }
@@ -138,8 +144,8 @@ metrics Client::evaluate_self() {
         iid i = ix.i;
         rating r = ix.r;
         rating r_hat = predict(i);
-        // CERR(r)
-        // CERR(r_hat)
+        if(r_hat < 1) r_hat = 1;
+        if(r_hat > 5) r_hat = 5;
         MSE += (r - r_hat) * (r - r_hat);
         MAE += fabs(r - r_hat);
     }
