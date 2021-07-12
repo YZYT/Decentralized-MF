@@ -75,22 +75,18 @@ void readTestData(const string& filename){
 }
 void initParam(){
     srand(233);
-    int cnt = 0;
+
     f(i, 0, (int)U.rows() - 1){
         f(j, 0, (int)U.cols() - 1){
             U(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
-            cnt ++;
         }
     }
-    CERR(U.row(3))
 
-    cout << cnt << endl;
 
     f(i, 0, (int)V.rows() - 1){
         f(j, 0, (int)V.cols() - 1){
             V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
     }
-    CERR(V.row(2))
-    assert(1 == 0);
+
 }

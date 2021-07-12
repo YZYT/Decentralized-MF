@@ -2,7 +2,7 @@
 
 void Server::train() {
 
-    f(iter, 1, T){
+    f(iter, 1, 10){
         for(auto record: records){
             uid u = record.u;
             iid i = record.i;
@@ -11,7 +11,7 @@ void Server::train() {
             update(u, i, r, grad_u, grad_v);
         }
         eta = eta * 0.95;
-        if(iter % 20 == 0){
+        if(iter % 10 == 0){
             metrics tmp = evaluate();
             rating MSE = getMSE(tmp);
             rating MAE = getMAE(tmp);
@@ -21,14 +21,14 @@ void Server::train() {
             CSV(os_csv, iter, MSE, MAE)
         }
     }
-    f(i, 1, 10){
-        int a = rand() % 500 + 1;
-        CERR(U.row(a))
-    }
-    f(i, 1, 10){
-        int a = rand() % 500 + 1;
-        CERR(V.row(a))
-    }
+    // f(i, 1, 10){
+    //     int a = rand() % 500 + 1;
+    //     CERR(U.row(a))
+    // }
+    // f(i, 1, 10){
+    //     int a = rand() % 500 + 1;
+    //     CERR(V.row(a))
+    // }
 }
 
 void Server::update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v) {
