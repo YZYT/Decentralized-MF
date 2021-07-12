@@ -81,7 +81,7 @@ void initParam(){
             U(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
     }
-    CERR(U.row(3))
+    CERR(U.row(0))
 
     f(i, 0, (int)V.rows() - 1){
         f(j, 0, (int)V.cols() - 1){
