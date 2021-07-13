@@ -15,6 +15,7 @@ void Client::initParam(){
             V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
         }
     }
+    
 }
 
 void Client::initParam_U(VectorXd& _U_u){
@@ -75,6 +76,7 @@ void Client::reach_consensus(){
         V.row(i) -= eta * *neigh_grad_v / neigh_grads_v[i].cnt;
 
         delete neigh_grad_v;
+
         neigh_grads_v[i].grad = 0;
 
     }

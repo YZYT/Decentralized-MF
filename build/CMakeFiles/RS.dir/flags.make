@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/root/research/RS/../libs/eigen-3.3.9
 
-CXX_FLAGS =  -std=c++20 -O3 -g -std=gnu++2a
+CXX_FLAGS =  -std=c++20 -Og -g -g -std=gnu++2a
 

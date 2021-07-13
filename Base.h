@@ -76,6 +76,7 @@ struct Interaction{
         return i > tmp.i;
     }
 };
+
 extern int DEBUGS2;
 class Grads_neigh{
 public:

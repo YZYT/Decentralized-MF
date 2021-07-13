@@ -1,0 +1,70 @@
+==15498== Memcheck, a memory error detector
+==15498== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==15498== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==15498== Command: ./build/RS
+==15498== Parent PID: 31434
+==15498== 
+==15498== 
+==15498== HEAP SUMMARY:
+==15498==     in use at exit: 1,250,194,704 bytes in 14,206,758 blocks
+==15498==   total heap usage: 15,100,414 allocs, 893,656 frees, 15,014,450,715 bytes allocated
+==15498== 
+==15498== 3,840 bytes in 24 blocks are possibly lost in loss record 1 of 3
+==15498==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15498==    by 0x40534D: aligned_malloc (Memory.h:159)
+==15498==    by 0x40534D: conditional_aligned_malloc<true> (Memory.h:214)
+==15498==    by 0x40534D: conditional_aligned_new_auto<double, true> (Memory.h:374)
+==15498==    by 0x40534D: resize (DenseStorage.h:557)
+==15498==    by 0x40534D: resize (PlainObjectBase.h:293)
+==15498==    by 0x40534D: resize_if_allowed<Eigen::Matrix<double, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > >, double, double> (AssignEvaluator.h:720)
+==15498==    by 0x40534D: call_dense_assignment_loop<Eigen::Matrix<double, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > >, Eigen::internal::assign_op<double, double> > (AssignEvaluator.h:734)
+==15498==    by 0x40534D: run (AssignEvaluator.h:879)
+==15498==    by 0x40534D: call_assignment_no_alias<Eigen::Matrix<double, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > >, Eigen::internal::assign_op<double, double> > (AssignEvaluator.h:836)
+==15498==    by 0x40534D: _set_noalias<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > > > (PlainObjectBase.h:732)
+==15498==    by 0x40534D: _init1<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > >, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > > > (PlainObjectBase.h:818)
+==15498==    by 0x40534D: Matrix<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > > > (Matrix.h:294)
+==15498==    by 0x40534D: Grads_neigh::update(Eigen::Matrix<double, -1, 1, 0, -1, 1>*, Edge&, int) (Base.h:99)
+==15498==    by 0x402F44: Client::receive_grad(int, Eigen::Matrix<double, -1, 1, 0, -1, 1>*, Edge&) (Client.cpp:100)
+==15498==    by 0x404DA8: Client::train_next() (Client.cpp:60)
+==15498==    by 0x407B10: Server::train() (Server.cpp:53)
+==15498==    by 0x4027C6: main (main.cpp:17)
+==15498== 
+==15498== 1,136,536,800 bytes in 7,103,355 blocks are indirectly lost in loss record 2 of 3
+==15498==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15498==    by 0x40534D: aligned_malloc (Memory.h:159)
+==15498==    by 0x40534D: conditional_aligned_malloc<true> (Memory.h:214)
+==15498==    by 0x40534D: conditional_aligned_new_auto<double, true> (Memory.h:374)
+==15498==    by 0x40534D: resize (DenseStorage.h:557)
+==15498==    by 0x40534D: resize (PlainObjectBase.h:293)
+==15498==    by 0x40534D: resize_if_allowed<Eigen::Matrix<double, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > >, double, double> (AssignEvaluator.h:720)
+==15498==    by 0x40534D: call_dense_assignment_loop<Eigen::Matrix<double, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > >, Eigen::internal::assign_op<double, double> > (AssignEvaluator.h:734)
+==15498==    by 0x40534D: run (AssignEvaluator.h:879)
+==15498==    by 0x40534D: call_assignment_no_alias<Eigen::Matrix<double, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > >, Eigen::internal::assign_op<double, double> > (AssignEvaluator.h:836)
+==15498==    by 0x40534D: _set_noalias<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > > > (PlainObjectBase.h:732)
+==15498==    by 0x40534D: _init1<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > >, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > > > (PlainObjectBase.h:818)
+==15498==    by 0x40534D: Matrix<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::Matrix<double, -1, 1>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1> > > > (Matrix.h:294)
+==15498==    by 0x40534D: Grads_neigh::update(Eigen::Matrix<double, -1, 1, 0, -1, 1>*, Edge&, int) (Base.h:99)
+==15498==    by 0x402F44: Client::receive_grad(int, Eigen::Matrix<double, -1, 1, 0, -1, 1>*, Edge&) (Client.cpp:100)
+==15498==    by 0x404DA8: Client::train_next() (Client.cpp:60)
+==15498==    by 0x407B10: Server::train() (Server.cpp:53)
+==15498==    by 0x4027C6: main (main.cpp:17)
+==15498== 
+==15498== 1,250,190,864 (113,654,064 direct, 1,136,536,800 indirect) bytes in 7,103,379 blocks are definitely lost in loss record 3 of 3
+==15498==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15498==    by 0x405222: conditional_aligned_malloc<false> (Memory.h:221)
+==15498==    by 0x405222: operator new (PlainObjectBase.h:143)
+==15498==    by 0x405222: Grads_neigh::update(Eigen::Matrix<double, -1, 1, 0, -1, 1>*, Edge&, int) (Base.h:99)
+==15498==    by 0x402F44: Client::receive_grad(int, Eigen::Matrix<double, -1, 1, 0, -1, 1>*, Edge&) (Client.cpp:100)
+==15498==    by 0x404DA8: Client::train_next() (Client.cpp:60)
+==15498==    by 0x407B10: Server::train() (Server.cpp:53)
+==15498==    by 0x4027C6: main (main.cpp:17)
+==15498== 
+==15498== LEAK SUMMARY:
+==15498==    definitely lost: 113,654,064 bytes in 7,103,379 blocks
+==15498==    indirectly lost: 1,136,536,800 bytes in 7,103,355 blocks
+==15498==      possibly lost: 3,840 bytes in 24 blocks
+==15498==    still reachable: 0 bytes in 0 blocks
+==15498==         suppressed: 0 bytes in 0 blocks
+==15498== 
+==15498== For counts of detected and suppressed errors, rerun with: -v
+==15498== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
