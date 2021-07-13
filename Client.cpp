@@ -29,26 +29,24 @@ void Client::rate(iid i, rating r){
 }
 
 void Client::rate_test(iid i, rating r){
-    I_u_test.insert({i, r});
+    I_u_test.push_back({i, r});
 }
 
-void Client::initial(){
-    for(auto t: pool){
-        delete t;
-    }
-    pool.clear();
-
-    // neigh_grads_v.clear();
+void Client::init_recv(){
+    neigh_grads_v = new Grads_neigh[MAXM];
 }
 
-void Client::train(iid i, rating r){
-        
-    if(I_u.size() == 0) return;
-    initial();
+void Client::init_train(){
+    random_shuffle(I_u.begin(), I_u.end());
+    next_ix = 0;
+}
 
-    // int index = rand() % I_u.size();
-    // iid i = I_u[index].i;
-    // rating r = I_u[index].r;
+bool Client::train_next(){
+
+    if(next_ix >= I_u.size()) return false;
+
+    iid i = I_u[next_ix].i;
+    rating r = I_u[next_ix ++].r;
 
 
     VectorXd* grad_u = new VectorXd(MAXK);
@@ -56,13 +54,15 @@ void Client::train(iid i, rating r){
 
     update(i, r, grad_u, grad_v);
     
-    for(auto edge: neighbours){
-        Client* neighbour = edge.first;
-        neighbour->receive_grad(i, grad_v, edge.second);
+    for(auto& edge: neighbours){
+        Client* neighbour = edge.neighbour;
+        neighbour->receive_grad(i, grad_v, edge);
     }
 
-    pool.push_back(grad_v);
+    // pool.push_back(grad_v);
     delete grad_u;
+    delete grad_v;
+    return true;
 }
 
 void Client::reach_consensus(){
@@ -71,20 +71,16 @@ void Client::reach_consensus(){
 
         VectorXd* neigh_grad_v = neigh_grads_v[i].grad;
         if(!neigh_grad_v) continue;
-        // assert(V.row(i).size() == neigh_grad_v->size());
 
-        // CERR(*neigh_grad_v);
-        
-        // CERR(neigh_grads_v[i].cnt)
         V.row(i) -= eta * *neigh_grad_v / neigh_grads_v[i].cnt;
 
         delete neigh_grad_v;
         neigh_grads_v[i].grad = 0;
-        // grad_v += *neigh_grad_v;
-        // cout << "QQ" << endl;
-    }
 
-    // cout << grad_v << endl;
+    }
+    delete[] neigh_grads_v;
+
+
 }
 
 void Client::update(iid i, rating r, VectorXd* grad_u, VectorXd* grad_v) {
@@ -97,8 +93,9 @@ void Client::update(iid i, rating r, VectorXd* grad_u, VectorXd* grad_v) {
     V.row(i) -= eta * *grad_v;
 }
 
-void Client::receive_grad(iid i, VectorXd* grad_v, double weight){
-    neigh_grads_v[i].update(grad_v, weight);
+void Client::receive_grad(iid i, VectorXd* grad_v, Edge& edge){
+    assert(i < MAXM);
+    neigh_grads_v[i].update(grad_v, edge, i);
     // V.row(i) -= eta * *grad_v;
 }
 
@@ -117,7 +114,7 @@ metrics Client::evaluate_local() {
         if(r_hat > 5) r_hat = 5;
         MSE += (r - r_hat) * (r - r_hat);
         MAE += fabs(r - r_hat);
-    }
+    } 
     MSE = sqrt(MSE / I_u_test.size());
     MAE = MAE / I_u_test.size();
     return metrics(MSE, MAE);

@@ -34,10 +34,9 @@ typedef PDD                     metrics;   /* (MSE, MAE) */
 typedef double                  rating;
 typedef int                     uid;       /* user id */
 typedef int                     iid;       /* item id */
-class Client;
-typedef pair<Client*, double>   Edge;
 
-typedef pair<iid, VectorXd*>     package;
+
+typedef pair<iid, VectorXd*>    package;
 
 
 template<class T1, class T2> 
@@ -59,13 +58,17 @@ inline const pair<T1, T2> operator - (const pair<T1, T2>& p1, const pair<T1, T2>
     return res;
 }
 
+class Client;
+struct Edge{
+    Client*     neighbour;
+    double      weight;
+    uid         from;
+    uid         to;
+};
 
 struct Interaction{
     iid     i;
     rating  r;
-    bool operator = (const Interaction& tmp)const{
-        return i == tmp.i;
-    }
     bool operator < (const Interaction& tmp)const{
         return i < tmp.i;
     }
@@ -73,26 +76,35 @@ struct Interaction{
         return i > tmp.i;
     }
 };
-
+extern int DEBUGS2;
 class Grads_neigh{
 public:
-    int cnt;
     VectorXd* grad;
+    int cnt;
+    bool flag;
     Grads_neigh(){
         grad = 0;
     }
+
     ~Grads_neigh(){
         if(grad) delete grad;
         grad = 0;
     }
-    void update(VectorXd *_grad, double weight){
+
+    void update(VectorXd *_grad, Edge& edge, iid item){
+        DEBUGS2 ++;
         if(!grad){
             cnt = 1;
-            grad = new VectorXd(*_grad * weight);
+            grad = new VectorXd(*_grad * edge.weight);
         }
         else{
-            *grad += *_grad * weight;
+            *grad += *_grad * edge.weight;
             cnt ++;
+            if(cnt >= 100){
+                CERR(edge.to)
+                CERR(item)
+            }
+            assert(cnt < 100);
         }
     }
 };
@@ -126,5 +138,8 @@ const int MAXM = 2e3 + 5;
 const int MAXK = 20;
 
 extern vector<Record> records_test;
+
+extern int DEBUGS;
+
 
 #endif //RS_BASE_H

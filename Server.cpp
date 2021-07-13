@@ -36,20 +36,34 @@ void Server::train() {
     f(iter, 1, T * 5){
         
         CERR(iter)
-        for(auto& record: records){
-            uid u = record.u;
-            clients[u].train(record.i, record.r);
-        }
+
+
+
         for(auto& client: clients){
-            client.reach_consensus();
+            client.init_train();
         }
-        
-        eta = eta * 0.9;
-        
-        // f(i, 1, 3){
-        //     int x = rand() % 500 + 1;
-        //     clients[x].print();
-        // }
+
+        bool next_round = true;
+        int NUM = 0;
+        while(next_round){
+            for(auto& client: clients){
+                client.init_recv();
+            }
+
+            next_round = false;
+            for(auto& client: clients){
+                if(client.train_next()){
+                    next_round = true;
+                }
+            }
+            for(auto& client: clients){
+                client.reach_consensus();
+            }
+        }
+
+
+        eta = eta * 0.95;
+
         if(iter % 1 == 0){
             metrics tmp(0, 0);
             for(auto& client: clients){

@@ -5,11 +5,12 @@ Server* Builder::build(int argc, char *argv[]){
     readConfig(argc, argv);
 
     // CERR(server->clients.size());
-    
+     
     readTrainData(traindata);
     readTestData(testdata);
 
     // CERR(server->clients.size());
+  
 
     buildGraph();
 
@@ -50,11 +51,16 @@ void Builder::readTrainData(const string& filename){
     string t;
     cout << filename << endl;
     vector<Client>& clients = server->clients;
+
+
+
     while(fin >> u >> i >> r >> t){
+        assert(u < MAXN);
         clients[u].rate(i, r);
         records.push_back({u, i, r});
     }
-    
+
+
     for(auto& client: clients){
         sort(client.I_u.begin(), client.I_u.end());
     }
@@ -70,6 +76,7 @@ void Builder::readTestData(const string& filename){
     string t;
     cout << filename << endl;
     vector<Client>& clients = server->clients;
+
     while(fin >> u >> i >> r >> t){
         clients[u].rate_test(i, r);
         records_test.push_back({u, i, r});
@@ -81,6 +88,8 @@ void Builder::buildGraph(){
     vector<Client>& clients = server->clients;
     double SAVED = 0;
 
+    int NUM = 0;
+
     f(i, 0, MAXN - 1){
         f(j, i + 1, MAXN - 1){
             double w;
@@ -89,11 +98,13 @@ void Builder::buildGraph(){
                 SAVED += 1;
                 continue;
             }
-            server->clients[i].neighbours.push_back(make_pair(&(server->clients[j]), w));
-            server->clients[j].neighbours.push_back(make_pair(&(server->clients[i]), w));
+
+            server->clients[i].neighbours.push_back({&(server->clients[j]), w, i, j});
+            server->clients[j].neighbours.push_back({&(server->clients[i]), w, j, i});
         }
         // cout << i << " " << clients[i].I_u.size() << " " << clients[i].neighbours.size() << endl;
     }
+
     SAVED /= MAXN * MAXN / 2;
     CERR(SAVED)
 }
@@ -114,6 +125,6 @@ double Builder::calcSimilarity(Client& u, Client& v){
             v_it ++;
         }
     }
-    if(cnt < 2) return 0;
+    if(cnt < 1) return 0;
     return cnt / sqrt(1.0 *  u.I_u.size() * v.I_u.size());
 }
