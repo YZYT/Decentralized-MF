@@ -1,3 +1,0 @@
-/root/research/RS/build/CMakeFiles/rebuild_cache.dir
-/root/research/RS/build/CMakeFiles/edit_cache.dir
-/root/research/RS/build/CMakeFiles/RS.dir
