@@ -5,5 +5,5 @@ project(RS)
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -Og -g")
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(../libs/eigen-3.3.9)
+include_directories(libs/eigen-3.3.9)
 add_executable(RS main.cpp Server.h Data.cpp Data.h Client.cpp Client.h Base.h Server.cpp Base.cpp Builder.h Builder.cpp)

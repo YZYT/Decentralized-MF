@@ -6,9 +6,9 @@ ofstream os_tmp;
 ofstream os_csv;
 
 // string traindata = "../ml-100k/u1.base";
-string traindata = "../data/ML100K/ML100K_copy1_train.txt";
+string traindata = "data/ML100K/ML100K_copy1_train.txt";
 // string testdata = "../ml-100k/u1.test";
-string testdata = "../data/ML100K/ML100K_copy1_test.txt";
+string testdata = "data/ML100K/ML100K_copy1_test.txt";
 
 string output;
 

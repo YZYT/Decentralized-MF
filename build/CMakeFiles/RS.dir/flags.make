@@ -4,7 +4,7 @@
 # compile CXX with /bin/g++-10
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/root/research/RS/../libs/eigen-3.3.9
+CXX_INCLUDES = -I/root/research/RS/libs/eigen-3.3.9
 
 CXX_FLAGS =  -std=c++20 -Og -g -g -std=gnu++2a
 

@@ -22,10 +22,10 @@ void Builder::readConfig(int argc, char *argv[]){
     f(i, 1, argc - 1){
         if(!strcmp(argv[i], "-alpha")) alpha = atof(argv[++ i]);
         else if(!strcmp(argv[i], "-eta")) eta = atof(argv[++ i]);
-        else if(!strcmp(argv[i], "-traindata")) traindata = "../data/" + string(argv[++ i]);
-        else if(!strcmp(argv[i], "-testdata")) testdata = "../data/" + string(argv[++ i]);
+        else if(!strcmp(argv[i], "-traindata")) traindata = "data/" + string(argv[++ i]);
+        else if(!strcmp(argv[i], "-testdata")) testdata = "data/" + string(argv[++ i]);
         else if(!strcmp(argv[i], "-output")){
-            output = "../results/" + string(argv[++ i]);
+            output = "results/" + string(argv[++ i]);
             os.open(output + ".out");
             os_tmp.open(output + ".tmp");
             os_csv.open(output + ".csv");
