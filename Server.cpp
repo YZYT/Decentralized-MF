@@ -40,7 +40,6 @@ void Server::update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v) 
 
     U.row(u) -= eta * grad_u;
     V.row(i) -= eta * grad_v;
-
 }
 
 metrics Server::evaluate() {
