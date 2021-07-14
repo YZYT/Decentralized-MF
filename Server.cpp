@@ -33,7 +33,7 @@ void Server::initParam(){
 void Server::train() {
     random_shuffle(records.begin(), records.end());
     
-    f(iter, 1, T * 5){
+    f(iter, 1, 10){
         
         CERR(iter)
 
@@ -76,7 +76,6 @@ void Server::train() {
             PRINT(os, MAE)
             CSV(os_csv, iter, MSE, MAE)
         }
-        break;
     }
 }
 

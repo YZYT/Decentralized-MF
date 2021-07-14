@@ -125,6 +125,6 @@ double Builder::calcSimilarity(Client& u, Client& v){
             v_it ++;
         }
     }
-    if(cnt < 25) return 0;
+    if(cnt < 1) return 0;
     return cnt / sqrt(1.0 *  u.I_u.size() * v.I_u.size());
 }
