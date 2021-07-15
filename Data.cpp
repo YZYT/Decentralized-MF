@@ -16,9 +16,9 @@ vector<Record> records_test;
 double alpha = 0.01;
 double eta = 0.01;
 int T = 200;
-string traindata = "../ml-100k/u1.base";
+string traindata = "data/ML100K/ml-100k/u1.base";
 // string traindata = "../data/ML100K/ML100K_copy1_train.txt";
-string testdata = "../ml-100k/u1.test";
+string testdata = "data/ML100K/ml-100k/u1.test";
 // string testdata = "../data/ML100K/ML100K_copy1_valid.txt";
 
 string output;
