@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 project(RS)
 # set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -mavx -mfma")
-# set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -O3")
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -Og -g")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -O3  -march=native -mavx -mfma -fopenmp")
+
 set(CMAKE_CXX_STANDARD 20)
 
 include_directories(libs/eigen-3.3.9)
-add_executable(RS main.cpp Server.h Data.cpp Data.h Client.cpp Client.h Base.h Server.cpp Base.cpp Builder.h Builder.cpp)
+add_executable(RS main.cpp Server.h Data.cpp Data.h Client.cpp Client.h Base.h Server.cpp Base.cpp Builder.h Builder.cpp ThreadPool.h)

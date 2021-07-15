@@ -33,8 +33,12 @@ void Server::initParam(){
 void Server::train() {
     random_shuffle(records.begin(), records.end());
     
-    f(iter, 1, 10){
-        
+    f(iter, 1, 40){
+        if(iter > 20){
+            int x;
+            cin >> x;
+            if(x != 1) break;
+        }
         CERR(iter)
 
         for(auto& client: clients){
@@ -42,39 +46,56 @@ void Server::train() {
         }
 
         bool next_round = true;
-        int NUM = 0;
+        
         while(next_round){
             for(auto& client: clients){
                 client.init_recv();
             }
 
             next_round = false;
+
             for(auto& client: clients){
-                if(client.train_next()){
+                if(client.train_next(next_round)){
                     next_round = true;
                 }
             }
+
             for(auto& client: clients){
                 client.reach_consensus();
             }
         }
 
-
         eta = eta * 0.95;
 
         if(iter % 1 == 0){
-            metrics tmp(0, 0);
-            for(auto& client: clients){
-                tmp = tmp + client.evaluate_global();
+            {
+                metrics tmp(0, 0);
+                for(auto& client: clients){
+                    tmp = tmp + client.evaluate_global();
+                }
+
+                rating MSE = sqrt(getMSE(tmp) / records_test.size());
+                rating MAE = getMAE(tmp) / records_test.size();
+
+                PRINT(os, MSE)
+                PRINT(os, MAE)
+                CSV(os_csv, iter, MSE, MAE)
             }
+            
+            {
+                metrics tmp(0, 0);
+                for(auto& client: clients){
+                    tmp = tmp + client.evaluate_self();
+                }
 
-            rating MSE = sqrt(getMSE(tmp) / records_test.size());
-            rating MAE = getMAE(tmp) / records_test.size();
+                rating MSE = sqrt(getMSE(tmp) / records.size());
+                rating MAE = getMAE(tmp) / records.size();
 
-            PRINT(os, iter)
-            PRINT(os, MSE)
-            PRINT(os, MAE)
-            CSV(os_csv, iter, MSE, MAE)
+                PRINT(os, MSE)
+                PRINT(os, MAE)
+                CSV(os_csv, iter, MSE, MAE)
+            }
+           
         }
     }
 }

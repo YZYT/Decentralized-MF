@@ -44,7 +44,7 @@ public:
     void initParam_V(MatrixXd& _V);
     void rate(iid i, rating r);
     void rate_test(iid i, rating r);
-    bool train_next();
+    bool train_next(bool& next_round);
     void reach_consensus();
     metrics evaluate_local();
     metrics evaluate_global();

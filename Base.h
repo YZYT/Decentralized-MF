@@ -16,7 +16,8 @@
 #include <assert.h>
 #include <utility>
 #include <filesystem>
-
+#include <sys/time.h> 
+#include "ThreadPool.h"
 
 #define f(i,l,r) for(int i=(l);i<=(r);i++)
 #define CERR(x) cout << #x << " : " << x << endl;
@@ -101,11 +102,11 @@ public:
         else{
             *grad += *_grad * edge.weight;
             cnt ++;
-            if(cnt >= 100){
-                CERR(edge.to)
-                CERR(item)
-            }
-            assert(cnt < 100);
+            // if(cnt >= 100){
+            //     CERR(edge.to)
+            //     CERR(item)
+            // }
+            // assert(cnt < 100);
         }
     }
 };

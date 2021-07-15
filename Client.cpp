@@ -42,9 +42,10 @@ void Client::init_train(){
     next_ix = 0;
 }
 
-bool Client::train_next(){
+bool Client::train_next(bool& next_round){
 
     if(next_ix >= I_u.size()) return false;
+    next_round = true;
 
     iid i = I_u[next_ix].i;
     rating r = I_u[next_ix ++].r;

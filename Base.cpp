@@ -12,7 +12,7 @@ string testdata = "data/ML100K/ML100K_copy1_test.txt";
 
 string output;
 
-double alpha = 0.001;
+double alpha = 0.1;
 double eta = 0.03;
 int T = 200;
 

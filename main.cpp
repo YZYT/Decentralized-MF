@@ -4,22 +4,26 @@
 #include "Builder.h"
 
 int main(int argc, char *argv[]) {
-    clock_t startTime,endTime;
-    startTime = clock();
+    struct timeval time1,time2; 
+    gettimeofday(&time1,NULL);
 
     Server* server = Builder().build(argc, argv);
-
     // CERR(server->clients.size());
-    
     server->initParam();
-
-
     server->train();
-
     delete server;
 
-    endTime = clock();
-    cout << "Run Time:" << 1.0 * (endTime - startTime) / CLOCKS_PER_SEC << endl;
+    gettimeofday(&time2,NULL); 
+    time2.tv_sec-=time1.tv_sec; 
+    time2.tv_usec-=time1.tv_usec; 
+    if (time2.tv_usec<0L) { 
+        time2.tv_usec+=1000000L; 
+        time2.tv_sec-=1; 
+    } 
+    printf("Executiontime=%ld.%06ld seconds\n",time2.tv_sec,time2.tv_usec); 
+
+
+
 //    MatrixXd a(2, 2);
 //    MatrixXd b(2, 2);
 //    a(0, 0) = 1;
