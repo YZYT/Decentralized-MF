@@ -74,7 +74,9 @@ void Client::reach_consensus(){
         VectorXd* neigh_grad_v = neigh_grads_v[i].grad;
         if(!neigh_grad_v) continue;
 
-        V.row(i) -= eta * *neigh_grad_v / neigh_grads_v[i].cnt;
+        VectorXd delta = eta * *neigh_grad_v;
+
+        V.row(i) -= delta;
 
         delete neigh_grad_v;
 
@@ -129,8 +131,8 @@ metrics Client::evaluate_global() {
         iid i = ix.i;
         rating r = ix.r;
         rating r_hat = predict(i);
-        if(r_hat < 1) r_hat = 1;
-        if(r_hat > 5) r_hat = 5;
+        // if(r_hat < 1) r_hat = 1;
+        // if(r_hat > 5) r_hat = 5;
         MSE += (r - r_hat) * (r - r_hat);
         MAE += fabs(r - r_hat);
     }
@@ -144,8 +146,8 @@ metrics Client::evaluate_self() {
         iid i = ix.i;
         rating r = ix.r;
         rating r_hat = predict(i);
-        if(r_hat < 1) r_hat = 1;
-        if(r_hat > 5) r_hat = 5;
+        // if(r_hat < 1) r_hat = 1;x
+        // if(r_hat > 5) r_hat = 5;
         MSE += (r - r_hat) * (r - r_hat);
         MAE += fabs(r - r_hat);
     }

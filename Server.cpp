@@ -34,7 +34,7 @@ void Server::train() {
     random_shuffle(records.begin(), records.end());
     
     f(iter, 1, 40){
-        if(iter > 20){
+        if(iter > 10){
             int x;
             cin >> x;
             if(x != 1) break;
@@ -82,19 +82,19 @@ void Server::train() {
                 CSV(os_csv, iter, MSE, MAE)
             }
             
-            {
-                metrics tmp(0, 0);
-                for(auto& client: clients){
-                    tmp = tmp + client.evaluate_self();
-                }
+            // {
+            //     metrics tmp(0, 0);
+            //     for(auto& client: clients){
+            //         tmp = tmp + client.evaluate_self();
+            //     }
 
-                rating MSE = sqrt(getMSE(tmp) / records.size());
-                rating MAE = getMAE(tmp) / records.size();
+            //     rating MSE = sqrt(getMSE(tmp) / records.size());
+            //     rating MAE = getMAE(tmp) / records.size();
 
-                PRINT(os, MSE)
-                PRINT(os, MAE)
-                CSV(os_csv, iter, MSE, MAE)
-            }
+            //     PRINT(os, MSE)
+            //     PRINT(os, MAE)
+            //     CSV(os_csv, iter, MSE, MAE)
+            // }
            
         }
     }
