@@ -10,15 +10,24 @@ vector<Client> clients(MAXN);
 MatrixXd U(MAXN, MAXK);
 MatrixXd V(MAXM, MAXK);
 
+float average_rating[MAXN];
+int active[MAXN];
+
+
+float average_rating_item[MAXM];
+int active_item[MAXM];
+
+
+
 vector<Record> records;
 vector<Record> records_test;
 
-double alpha = 0.01;
-double eta = 0.01;
+double alpha = 0;
+double eta = 0.05;
 int T = 200;
 string traindata = "data/ML100K/ML100K_copy1_train.txt";
 // string traindata = "../data/ML100K/ML100K_copy1_train.txt";
-string testdata = "data/ML100K/ml-100k/u1.test";
+string testdata = "data/ML100K/ML100K_copy1_test.txt";
 // string testdata = "../data/ML100K/ML100K_copy1_valid.txt";
 
 string output;
@@ -37,6 +46,9 @@ void readConfig(int argc, char *argv[]){
         }
         else if(!strcmp(argv[i], "-T")) T = atoi(argv[++ i]);
     }
+
+    os_debug_csv.open("results/U_u_k=1.csv");
+
     PRINT(os, alpha)
     PRINT(os, eta)
     PRINT(os, traindata)
@@ -45,6 +57,7 @@ void readConfig(int argc, char *argv[]){
     PRINT(os, T)
 
     CSV(os_csv, "iter", "MSE", "MAE")
+    CSV(os_debug_csv, "norm", "average_rating", "ative")
 }
 
 void readTrainData(const string& filename){
@@ -58,7 +71,14 @@ void readTrainData(const string& filename){
         R[u][i] = r;
         clients[u].I_u.insert(i);
         records.push_back({u, i, r});
+
+        active[u] ++;
+        active_item[i] ++;
+
+        average_rating[u] += r;
+        average_rating_item[i] += r;
     }
+
     fin.close();
 }
 void readTestData(const string& filename){

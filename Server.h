@@ -12,7 +12,10 @@ class Server {
 public:
     static void train();
     static metrics evaluate();
+    static double evaluate_loss();
+    static metrics evaluate_local();
     static void performance();
+    static void printU();
 
 private:
     static void update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v);

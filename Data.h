@@ -13,7 +13,7 @@
 using namespace std;
 using namespace Eigen;
 
-const int MAXN = 1e3 + 5, MAXM = 2e3 + 5, MAXK = 20;
+const int MAXN = 1e3 + 5, MAXM = 2e3 + 5, MAXK = 1;
 
 
 extern rating R[MAXN][MAXM];
@@ -33,6 +33,12 @@ extern double alpha;
 extern double eta;
 extern int T;
 extern string traindata, testdata, output;
+
+extern float average_rating[MAXN];
+extern float average_rating_item[MAXM];
+extern int active[MAXN];
+extern int active_item[MAXM];
+
 
 void readConfig(int argc, char *argv[]);
 void readTrainData(const string& filename);
