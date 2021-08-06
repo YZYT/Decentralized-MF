@@ -8,7 +8,8 @@ rating R[MAXN][MAXM];
 vector<Client> clients(MAXN);
 
 MatrixXd U(MAXN, MAXK);
-MatrixXd V(MAXM, MAXK);
+MatrixXd P(MAXM, 4);
+MatrixXd Q(4, 20);
 
 float average_rating[MAXN];
 int active[MAXN];
@@ -24,7 +25,7 @@ vector<Record> records;
 vector<Record> records_test;
 
 float alpha = 0.1;
-float eta = 0.01;
+float eta = 10;
 float eta_initial = eta;
 int early_stop = 100;
 
@@ -108,9 +109,15 @@ void initParam(){
     }
 
 
-    f(i, 0, (int)V.rows() - 1){
-        f(j, 0, (int)V.cols() - 1){
-            V(i, j) = ((float)rand() / RAND_MAX) * 0.01;
+    f(i, 0, (int)P.rows() - 1){
+        f(j, 0, (int)P.cols() - 1){
+            P(i, j) = ((float)rand() / RAND_MAX) * 0.01;
+        }
+    }
+
+    f(i, 0, (int)Q.rows() - 1){
+        f(j, 0, (int)Q.cols() - 1){
+            Q(i, j) = ((float)rand() / RAND_MAX) * 0.01;
         }
     }
 
@@ -126,13 +133,13 @@ void saveModel(){
         }
         os << endl;
     }
-    f(i, 0, (int)V.rows() - 1){
-        f(j, 0, (int)V.cols() - 1){
-            if(j) os << " ";
-            os << V(i, j);
-        }
-        os << endl;
-    }
+    // f(i, 0, (int)V.rows() - 1){
+    //     f(j, 0, (int)V.cols() - 1){
+    //         if(j) os << " ";
+    //         os << V(i, j);
+    //     }
+    //     os << endl;
+    // }
     os.close();
 }
 

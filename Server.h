@@ -18,7 +18,7 @@ public:
     static void printU();
 
 private:
-    static void update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v);
+    static void update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v, MatrixXd& grad_q);
     static rating predict(uid u, iid i);
 
 };

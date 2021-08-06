@@ -13,7 +13,7 @@
 using namespace std;
 using namespace Eigen;
 
-const int MAXN = 1e3 + 5, MAXM = 2e3 + 5, MAXK = 20;
+const int MAXN = 1e3 + 5, MAXM = 2e3 + 5, MAXK = 3;
 
 
 extern rating R[MAXN][MAXM];
@@ -27,7 +27,8 @@ extern vector<Record> records;
 extern vector<Record> records_test;
 
 extern MatrixXd U;
-extern MatrixXd V;
+extern MatrixXd P;
+extern MatrixXd Q;
 
 extern float alpha;
 extern float eta;

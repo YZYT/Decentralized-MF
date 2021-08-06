@@ -14,7 +14,8 @@
         "alignedvector3": "cpp",
         "fft": "cpp",
         "limits": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "numbers": "cpp"
     },
     "jupyter.jupyterServerType": "local"
 }

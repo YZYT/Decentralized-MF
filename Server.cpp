@@ -6,14 +6,15 @@ void Server::train() {
     int early_stop_cnt = 0;
     
     int iter = 0;
-    for(; iter <= 600; iter ++){
+    for(; iter <= 5; iter ++){
         // CERR(iter)
         for(auto record: records){
             uid u = record.u;
             iid i = record.i;
             rating r = record.r;
-            VectorXd grad_u(MAXK), grad_v(MAXK);
-            update(u, i, r, grad_u, grad_v);
+            VectorXd grad_u(MAXK), grad_p(4);
+            MatrixXd grad_Q(4, 20);
+            update(u, i, r, grad_u, grad_p, grad_Q);
         }
         eta = eta * 0.99;
 
@@ -27,7 +28,7 @@ void Server::train() {
             min_mse = dev_mse;
             early_stop_cnt = 0;
             printf("Saving model... (epoch =%4d,  loss = %.4f)\n", iter, min_mse);
-            saveModel();
+            // saveModel();
         }
         else{
             early_stop_cnt ++;
@@ -35,7 +36,7 @@ void Server::train() {
                 break;
             }
         }
-        if(iter % 50 == 0){
+        if(iter % 1 == 0){
             CERR(iter)
             cout << "TEST:" << endl;
             {
@@ -62,29 +63,23 @@ void Server::train() {
         }
     }
     printf("Finished training after %d epochs.\n", iter);
-    save_learning_curve();
-    VectorXd ANS = U * V.transpose();
-    cerr << ANS(0, 0) << " " << ANS(0, 1) << " " << ANS(0, 2) << endl;
-    for(auto &record: records_test){
-        cout << record.u << " " << record.i << " " << record.r << endl;
-        uid u = record.u;
-        iid i = record.i;
-        rating r_hat = predict(u, i);
-        cout << r_hat << endl;
-        break;
-    }
+    // save_learning_curve();
     // printU();
 }
 
-void Server::update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v) {
+void Server::update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_p, MatrixXd& grad_Q){
     VectorXd U_u = U.row(u);
-    VectorXd V_i = V.row(i);
+    VectorXd P_i = P.row(i);
     rating e = 1.0 * r - predict(u, i);
-    grad_u = -e * V_i + alpha * U_u;
-    grad_v = -e * U_u + alpha * V_i;
+    grad_u = -e * P_i * Q + alpha * U_u;
+    grad_p = -e * U_u * Q.transpose() + alpha * P_i;
+    grad_Q = -e * P_i.transpose() * U_u + alpha * Q;
+
+    // cout << grad_u << endl << grad_p << endl << grad_Q << endl;
 
     U.row(u) -= eta * grad_u;
-    V.row(i) -= eta * grad_v;
+    P.row(i) -= eta * grad_p;
+    Q -= eta * grad_Q;
 }
 
 metrics Server::evaluate() {
@@ -110,8 +105,8 @@ float Server::evaluate_loss() {
         rating r = record.r;
         rating r_hat = predict(u, i);
         Loss += (r - r_hat) * (r - r_hat);
-        Loss += U.row(u).norm() * U.row(u).norm();
-        Loss += V.row(i).norm() * V.row(i).norm();
+        // Loss += U.row(u).norm() * U.row(u).norm();
+        // Loss += V.row(i).norm() * V.row(i).norm();
     }
     return Loss;
 }
@@ -146,8 +141,8 @@ void Server::printU() {
 
 rating Server::predict(uid u, iid i){
     VectorXd U_u = U.row(u);
-    VectorXd V_i = V.row(i);
-    return (U_u.transpose() * V_i)(0);
+    VectorXd P_i = P.row(i);
+    return (U_u.transpose() * P_i * Q)(0);
 }
 
 void Server::performance() {
