@@ -1,8 +1,12 @@
 #include "Server.h"
 
 void Server::train() {
-
-    f(iter, 1, 500){
+    
+    float min_mse = -1;
+    int early_stop_cnt = 0;
+    
+    int iter = 0;
+    for(; iter <= 600; iter ++){
         // CERR(iter)
         for(auto record: records){
             uid u = record.u;
@@ -12,39 +16,64 @@ void Server::train() {
             update(u, i, r, grad_u, grad_v);
         }
         eta = eta * 0.99;
-        if(iter % 20 == 0){
+
+
+        float dev_mse = getMSE(evaluate());
+        float train_mse = getMSE(evaluate_local());
+        loss_record_dev.push_back(dev_mse);
+        loss_record_train.push_back(train_mse);
+
+        if(min_mse < 0 || dev_mse < min_mse){
+            min_mse = dev_mse;
+            early_stop_cnt = 0;
+            printf("Saving model... (epoch =%4d,  loss = %.4f)\n", iter, min_mse);
+            saveModel();
+        }
+        else{
+            early_stop_cnt ++;
+            if(early_stop_cnt > early_stop){
+                break;
+            }
+        }
+        if(iter % 50 == 0){
             CERR(iter)
             cout << "TEST:" << endl;
             {
-                metrics tmp = evaluate();
-                rating MSE = getMSE(tmp);
-                rating MAE = getMAE(tmp);
-                PRINT(os, MSE)
-                PRINT(os, MAE)
-                CSV(os_csv, iter, MSE, MAE)
+                PRINT(os, dev_mse)
+                // metrics tmp = evaluate();
+                // rating MSE = getMSE(tmp);
+                // rating MAE = getMAE(tmp);
+                // PRINT(os, MSE)
+                // PRINT(os, MAE)
+                // CSV(os_csv, iter, MSE, MAE)
             }
             cout << "TRAIN:" << endl;
             {
-                metrics tmp = evaluate_local();
-                rating MSE = getMSE(tmp);
-                rating MAE = getMAE(tmp);
-                PRINT(os, MSE)
-                PRINT(os, MAE)
-                CSV(os_csv, iter, MSE, MAE)
+                PRINT(os, train_mse)
+                // metrics tmp = evaluate_local();
+                // rating MSE = getMSE(tmp);
+                // rating MAE = getMAE(tmp);
+                // PRINT(os, MSE)
+                // PRINT(os, MAE)
+                // CSV(os_csv, iter, MSE, MAE)
             }
             cout << "OBJ:" << endl;
             cout << evaluate_loss() << endl;
         }
     }
-    printU();
-    // f(i, 1, 10){
-    //     int a = rand() % 500 + 1;
-    //     CERR(U.row(a))
-    // }
-    // f(i, 1, 10){
-    //     int a = rand() % 500 + 1;
-    //     CERR(V.row(a))
-    // }
+    printf("Finished training after %d epochs.\n", iter);
+    save_learning_curve();
+    VectorXd ANS = U * V.transpose();
+    cerr << ANS(0, 0) << " " << ANS(0, 1) << " " << ANS(0, 2) << endl;
+    for(auto &record: records_test){
+        cout << record.u << " " << record.i << " " << record.r << endl;
+        uid u = record.u;
+        iid i = record.i;
+        rating r_hat = predict(u, i);
+        cout << r_hat << endl;
+        break;
+    }
+    // printU();
 }
 
 void Server::update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_v) {
@@ -73,8 +102,8 @@ metrics Server::evaluate() {
     return metrics(MSE, MAE);
 }
 
-double Server::evaluate_loss() {
-    double Loss = 0;
+float Server::evaluate_loss() {
+    float Loss = 0;
     for(auto record: records){
         uid u = record.u;
         iid i = record.i;

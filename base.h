@@ -31,7 +31,7 @@ using namespace std;
 
 typedef pair<double, double>    PDD;
 typedef PDD                     metrics;   /* (MSE, MAE) */
-typedef double                  rating;
+typedef float                  rating;
 typedef int                     uid;       /* user id */
 typedef int                     iid;       /* item id */
 
@@ -40,6 +40,7 @@ typedef int                     iid;       /* item id */
 extern ofstream os;
 extern ofstream os_tmp;
 extern ofstream os_csv;
+extern ofstream os_model;
 
 extern ofstream os_debug_csv;
 #endif //RS_BASE_H

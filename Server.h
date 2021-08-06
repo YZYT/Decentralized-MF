@@ -12,7 +12,7 @@ class Server {
 public:
     static void train();
     static metrics evaluate();
-    static double evaluate_loss();
+    static float evaluate_loss();
     static metrics evaluate_local();
     static void performance();
     static void printU();

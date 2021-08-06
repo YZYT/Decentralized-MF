@@ -17,13 +17,17 @@ int active[MAXN];
 float average_rating_item[MAXM];
 int active_item[MAXM];
 
-
+vector<float> loss_record_train;
+vector<float> loss_record_dev;
 
 vector<Record> records;
 vector<Record> records_test;
 
-double alpha = 0;
-double eta = 0.05;
+float alpha = 0.1;
+float eta = 0.01;
+float eta_initial = eta;
+int early_stop = 100;
+
 int T = 200;
 string traindata = "data/ML100K/ML100K_copy1_train.txt";
 // string traindata = "../data/ML100K/ML100K_copy1_train.txt";
@@ -31,6 +35,7 @@ string testdata = "data/ML100K/ML100K_copy1_test.txt";
 // string testdata = "../data/ML100K/ML100K_copy1_valid.txt";
 
 string output;
+char outpath[200];
 
 void readConfig(int argc, char *argv[]){
     f(i, 1, argc - 1){
@@ -98,15 +103,44 @@ void initParam(){
 
     f(i, 0, (int)U.rows() - 1){
         f(j, 0, (int)U.cols() - 1){
-            U(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+            U(i, j) = ((float)rand() / RAND_MAX) * 0.01;
         }
     }
 
 
     f(i, 0, (int)V.rows() - 1){
         f(j, 0, (int)V.cols() - 1){
-            V(i, j) = ((double)rand() / RAND_MAX - 0.5) * 0.01;
+            V(i, j) = ((float)rand() / RAND_MAX) * 0.01;
         }
     }
 
+}
+
+void saveModel(){
+    sprintf(outpath, "model/model_al%.3f_et%.3f.out", alpha, eta_initial);
+    ofstream os(outpath);
+    f(i, 0, (int)U.rows() - 1){
+        f(j, 0, (int)U.cols() - 1){
+            if(j) os << " ";
+            os << U(i, j);
+        }
+        os << endl;
+    }
+    f(i, 0, (int)V.rows() - 1){
+        f(j, 0, (int)V.cols() - 1){
+            if(j) os << " ";
+            os << V(i, j);
+        }
+        os << endl;
+    }
+    os.close();
+}
+
+void save_learning_curve(){
+    sprintf(outpath, "model/lc_al%.3f_et%.3f.csv", alpha, eta_initial);
+    ofstream os(outpath);
+    os << "iter,loss_dev,loss_train" << endl;
+    f(i, 0, (int)loss_record_dev.size() - 1){
+        os << i << "," << loss_record_dev[i] << "," << loss_record_train[i] << endl;
+    }
 }

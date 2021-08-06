@@ -12,6 +12,9 @@
         "type_traits": "cpp",
         "*.expression": "cpp",
         "alignedvector3": "cpp",
-        "fft": "cpp"
-    }
+        "fft": "cpp",
+        "limits": "cpp",
+        "regex": "cpp"
+    },
+    "jupyter.jupyterServerType": "local"
 }
