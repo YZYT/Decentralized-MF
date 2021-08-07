@@ -24,8 +24,8 @@ vector<float> loss_record_dev;
 vector<Record> records;
 vector<Record> records_test;
 
-float alpha = 0.1;
-float eta = 10;
+float alpha = 0.01;
+float eta = 0.0000001;
 float eta_initial = eta;
 int early_stop = 100;
 

@@ -2,11 +2,12 @@
 
 void Server::train() {
     
+
     float min_mse = -1;
     int early_stop_cnt = 0;
     
     int iter = 0;
-    for(; iter <= 5; iter ++){
+    for(; iter <= 10; iter ++){
         // CERR(iter)
         for(auto record: records){
             uid u = record.u;
@@ -71,9 +72,9 @@ void Server::update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_p, 
     VectorXd U_u = U.row(u);
     VectorXd P_i = P.row(i);
     rating e = 1.0 * r - predict(u, i);
-    grad_u = -e * P_i * Q + alpha * U_u;
-    grad_p = -e * U_u * Q.transpose() + alpha * P_i;
-    grad_Q = -e * P_i.transpose() * U_u + alpha * Q;
+    grad_u = -e * Q.transpose() * P_i + alpha * U_u;
+    grad_p = -e * Q * U_u + alpha * P_i;
+    grad_Q = -e * P_i * U_u.transpose() + alpha * Q;
 
     // cout << grad_u << endl << grad_p << endl << grad_Q << endl;
 
@@ -142,7 +143,7 @@ void Server::printU() {
 rating Server::predict(uid u, iid i){
     VectorXd U_u = U.row(u);
     VectorXd P_i = P.row(i);
-    return (U_u.transpose() * P_i * Q)(0);
+    return (U_u.transpose() * Q.transpose() * P_i)(0);
 }
 
 void Server::performance() {

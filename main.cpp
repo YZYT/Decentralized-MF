@@ -3,18 +3,16 @@
 #include "Server.h"
 
 int main(int argc, char *argv[]) {
-    VectorXd U_u(1, 2, 3, 4);
-    VectorXd P_i(5, 6);
-    MatrixXd Q((7, 8, 9, 10), (11, 12, 13, 14));
-    cout << (U_u * P_i * Q)(0);
-    // cout << e << endl;
-    // grad_u = -e * P_i * Q + alpha * U_u;
-    // grad_p = -e * U_u * Q.transpose() + alpha * P_i;
-    // grad_Q = -e * P_i.transpose() * U_u + alpha * Q;
+    // Vector4d U_u(1, 2, 3, 4);
+    // Vector2d P_i(5, 6);
+    // MatrixXd Q(2, 4);
+    // Q << 7, 8, 9, 10, 11, 12, 13, 14;
+    // auto r = (U_u.transpose() * Q.transpose() * P_i)(0);
+    // auto grad_u =  Q.transpose() * P_i;
+    // auto grad_p =  Q * U_u;
+    // auto grad_Q =  P_i * U_u.transpose();
+    // cout << grad_Q << endl;
 
-
-
-    return 0;
     clock_t startTime,endTime;
     startTime = clock();//计时开始
     readConfig(argc, argv);
