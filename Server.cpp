@@ -73,13 +73,16 @@ void Server::update(uid u, iid i, rating r, VectorXd& grad_u, VectorXd& grad_p, 
     VectorXd P_i = P.row(i);
     rating e = 1.0 * r - predict(u, i);
     grad_u = -e * Q.transpose() * P_i + alpha * U_u;
-    grad_p = -e * Q * U_u + alpha * P_i;
+    // grad_p = -e * Q * U_u + alpha * P_i;
     grad_Q = -e * P_i * U_u.transpose() + alpha * Q;
 
     // cout << grad_u << endl << grad_p << endl << grad_Q << endl;
 
+    grad_u /= grad_u.norm();
+    grad_Q /= grad_Q.norm();
+
     U.row(u) -= eta * grad_u;
-    P.row(i) -= eta * grad_p;
+    // P.row(i) -= eta * grad_p;
     Q -= eta * grad_Q;
 }
 
