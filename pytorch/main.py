@@ -39,8 +39,17 @@ tr_set = prep_dataloader(data_train, 'train', config['batch_size'])
 dv_set = prep_dataloader(data_test, 'dev', config['batch_size'])
 # tt_set = prep_dataloader("data/ML100K/ML100K_copy1_test.txt", 'test', config['batch_size'], target_only=target_only)
 
-model = MF(n_users, n_items, n_factors).to(device) 
-model_loss, model_loss_record = train(tr_set, dv_set, model, device, config)
+
+model = MF(n_users, n_items, n_factors, config['alpha']).to(device) 
+
+
+optimizer = getattr(torch.optim, config['optimizer'])(
+    model.parameters(), **config['optim_hparas'])
+
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=config['step_size'], gamma=config['gamma'])
+
+model_loss, model_loss_record = train(tr_set, dv_set, model, optimizer, scheduler, device, config['n_epochs'], config['early_stop'])
+
 print(np.sqrt(model_loss))
 
 del model
